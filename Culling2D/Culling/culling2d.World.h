@@ -14,6 +14,9 @@ namespace culling2d
 		std::vector<Layer*> layers;
 
 	public:
+		World(int resolution, RectF worldRange);
+		~World();
+
 		std::vector<Grid&> GetCullingObjects(RectF cullingRange);
 		void Update();
 		int GetResolution();

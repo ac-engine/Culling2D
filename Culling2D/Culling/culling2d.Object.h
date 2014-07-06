@@ -11,6 +11,9 @@ namespace culling2d
 		void *userData;
 		World *worldRef;
 	public:
+		Object(Circle circle, void* userData, World *worldRef);
+		~Object();
+
 		const Circle& GetCircle();
 		void SetCircle(Circle circle);
 		const void* GetUserData();

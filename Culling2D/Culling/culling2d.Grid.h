@@ -10,6 +10,8 @@ namespace culling2d
 		RectF gridRange;
 
 	public:
+		Grid(int resolutionLevel, RectF gridRange);
+		~Grid();
 		int GetResolutionLevel();
 		RectF GetGridRange();
 		std::array<int,4> GetChildrenIndice();

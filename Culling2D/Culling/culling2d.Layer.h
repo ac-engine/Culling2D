@@ -9,7 +9,10 @@ namespace culling2d
 		int resolution;
 		std::vector<Grid*> cells;
 
-	public:
+	public:		
+		Layer(int resolution);
+		~Layer();
+
 		int GetResolution();
 		std::vector<Grid*> GetCells();
 	};
