@@ -37,9 +37,6 @@
       <Filter>Common\Math</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Common\culling2d.common.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="Culling\culling2d.Layer.cpp">
       <Filter>Culling</Filter>
     </ClCompile>
@@ -51,6 +48,9 @@
     </ClCompile>
     <ClCompile Include="Culling\culling2d.World.cpp">
       <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\culling2d.common.cpp">
+      <Filter>Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,9 +81,6 @@
     <ClInclude Include="Common\Math\culling2d.Circle.h">
       <Filter>Common\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Common\culling2d.common.Base.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="Culling\culling2d.Layer.h">
       <Filter>Culling</Filter>
     </ClInclude>
@@ -95,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="Culling\culling2d.World.h">
       <Filter>Culling</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\culling2d.common.Base.h">
+      <Filter>Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
