@@ -82,6 +82,7 @@ struct Matrix43;
 struct Matrix44;
 struct RectF;
 struct RectI;
+struct Circle;
 
 //----------------------------------------------------------------------------------
 //

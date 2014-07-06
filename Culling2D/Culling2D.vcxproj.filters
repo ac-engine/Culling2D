@@ -1,78 +1,100 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Common">
+      <UniqueIdentifier>{b9d2466c-63c5-4ebe-a52a-4915b4f488d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    <Filter Include="Common\Math">
+      <UniqueIdentifier>{15d5b142-3bff-4469-8833-406ef077a87b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="ソース ファイル\Math">
-      <UniqueIdentifier>{7df5db7c-43e1-4bf2-b2f1-2138ce746cfe}</UniqueIdentifier>
+    <Filter Include="Culling">
+      <UniqueIdentifier>{e569dc85-f19f-4981-8274-e14e7141c6ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="culling2d.common.Base.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.Matrix33.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.Matrix44.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.RectF.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.RectI.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.Vector2DF.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.Vector2DI.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.Vector3DF.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math\culling2d.Vector4DF.h">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClInclude>
+    <ClCompile Include="Common\Math\culling2d.Matrix33.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.Matrix44.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.RectF.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.RectI.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.Vector2DF.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.Vector2DI.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.Vector3DF.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Common\culling2d.common.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Culling\culling2d.Layer.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="Culling\culling2d.Grid.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="Culling\culling2d.Object.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="Culling\culling2d.World.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="culling2d.common.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.Matrix33.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.Matrix44.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.RectF.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.RectI.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.Vector2DF.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.Vector2DI.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.Vector3DF.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Math\culling2d.Vector4DF.cpp">
-      <Filter>ソース ファイル\Math</Filter>
-    </ClCompile>
+    <ClInclude Include="Common\Math\culling2d.Matrix33.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.Matrix44.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.RectF.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.RectI.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.Vector2DF.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.Vector2DI.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.Vector3DF.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.Vector4DF.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Math\culling2d.Circle.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\culling2d.common.Base.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Culling\culling2d.Layer.h">
+      <Filter>Culling</Filter>
+    </ClInclude>
+    <ClInclude Include="Culling\culling2d.Grid.h">
+      <Filter>Culling</Filter>
+    </ClInclude>
+    <ClInclude Include="Culling\culling2d.Object.h">
+      <Filter>Culling</Filter>
+    </ClInclude>
+    <ClInclude Include="Culling\culling2d.World.h">
+      <Filter>Culling</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

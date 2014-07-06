@@ -10,6 +10,38 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Common\culling2d.common.cpp" />
+    <ClCompile Include="Common\Math\culling2d.Matrix33.cpp" />
+    <ClCompile Include="Common\Math\culling2d.Matrix44.cpp" />
+    <ClCompile Include="Common\Math\culling2d.RectF.cpp" />
+    <ClCompile Include="Common\Math\culling2d.RectI.cpp" />
+    <ClCompile Include="Common\Math\culling2d.Vector2DF.cpp" />
+    <ClCompile Include="Common\Math\culling2d.Vector2DI.cpp" />
+    <ClCompile Include="Common\Math\culling2d.Vector3DF.cpp" />
+    <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp" />
+    <ClCompile Include="Culling\culling2d.Grid.cpp" />
+    <ClCompile Include="Culling\culling2d.Layer.cpp" />
+    <ClCompile Include="Culling\culling2d.Object.cpp" />
+    <ClCompile Include="Culling\culling2d.World.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common\culling2d.common.Base.h" />
+    <ClInclude Include="Common\Math\culling2d.Circle.h" />
+    <ClInclude Include="Common\Math\culling2d.Matrix33.h" />
+    <ClInclude Include="Common\Math\culling2d.Matrix44.h" />
+    <ClInclude Include="Common\Math\culling2d.RectF.h" />
+    <ClInclude Include="Common\Math\culling2d.RectI.h" />
+    <ClInclude Include="Common\Math\culling2d.Vector2DF.h" />
+    <ClInclude Include="Common\Math\culling2d.Vector2DI.h" />
+    <ClInclude Include="Common\Math\culling2d.Vector3DF.h" />
+    <ClInclude Include="Common\Math\culling2d.Vector4DF.h" />
+    <ClInclude Include="Culling\culling2d.Grid.h" />
+    <ClInclude Include="Culling\culling2d.Layer.h" />
+    <ClInclude Include="Culling\culling2d.Object.h" />
+    <ClInclude Include="Culling\culling2d.World.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F2375EF9-2508-4575-B5E3-06C16FEC6E0A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -77,28 +109,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="culling2d.common.Base.h" />
-    <ClInclude Include="Math\culling2d.Matrix33.h" />
-    <ClInclude Include="Math\culling2d.Matrix44.h" />
-    <ClInclude Include="Math\culling2d.RectF.h" />
-    <ClInclude Include="Math\culling2d.RectI.h" />
-    <ClInclude Include="Math\culling2d.Vector2DF.h" />
-    <ClInclude Include="Math\culling2d.Vector2DI.h" />
-    <ClInclude Include="Math\culling2d.Vector3DF.h" />
-    <ClInclude Include="Math\culling2d.Vector4DF.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="culling2d.common.cpp" />
-    <ClCompile Include="Math\culling2d.Matrix33.cpp" />
-    <ClCompile Include="Math\culling2d.Matrix44.cpp" />
-    <ClCompile Include="Math\culling2d.RectF.cpp" />
-    <ClCompile Include="Math\culling2d.RectI.cpp" />
-    <ClCompile Include="Math\culling2d.Vector2DF.cpp" />
-    <ClCompile Include="Math\culling2d.Vector2DI.cpp" />
-    <ClCompile Include="Math\culling2d.Vector3DF.cpp" />
-    <ClCompile Include="Math\culling2d.Vector4DF.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
