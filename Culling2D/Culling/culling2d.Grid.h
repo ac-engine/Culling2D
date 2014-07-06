@@ -8,9 +8,9 @@ namespace culling2d
 	{
 		int resolutionLevel;
 		RectF gridRange;
-
+		int index;
 	public:
-		Grid(int resolutionLevel, RectF gridRange);
+		Grid(int resolutionLevel, int index, RectF gridRange);
 		~Grid();
 		int GetResolutionLevel();
 		RectF GetGridRange();
