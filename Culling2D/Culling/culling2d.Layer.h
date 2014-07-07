@@ -7,13 +7,13 @@ namespace culling2d
 	class Layer
 	{
 		int resolution;
-		std::vector<Grid*> cells;
+		std::vector<Grid*> grids;
 
 	public:		
 		Layer(int resolution);
 		~Layer();
 
 		int GetResolution();
-		std::vector<Grid*> GetCells();
+		std::vector<Grid*> GetGrids();
 	};
 }
