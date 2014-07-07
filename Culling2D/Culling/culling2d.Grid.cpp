@@ -33,7 +33,7 @@ namespace culling2d
 
 	std::array<int, 4> Grid::GetChildrenIndice()
 	{
-		std::array<int, 4> indice{ { 0, 0, 0, 0 } };
+		std::array<int, 4> indice{ { 4 * index, 4 * index + 1, 4 * index + 2, 4 * index + 3 } };
 
 		return indice;
 	}
