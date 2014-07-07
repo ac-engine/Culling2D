@@ -43,7 +43,7 @@ namespace culling2d
 
 	int World::RecalculateResolution()
 	{
-		return 0;
+		return resolution;
 	}
 
 	RectF World::GetWorldRange()
