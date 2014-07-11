@@ -81,13 +81,59 @@ namespace culling2d
 		return worldRange;
 	}
 
+	Grid* World::searchDestinationGrid(Object * object)
+	{
+		Layer* belongLayer = nullptr;
+		int belongIndex = 0;
+
+		for (Layer* layer : layers)
+		{
+			auto range = layer->GetGrids()[0]->GetGridRange();
+			auto radius = object->GetCircle().Radius;
+			if (range.Height >= radius&&range.Width >= radius)
+			{
+				belongLayer = layer;
+			}
+			else
+			{
+				break;
+			}
+
+			if (layer != layers.back())
+			{
+				auto position = object->GetCircle().Position;
+				auto children = Grid::GetChildrenIndices(belongIndex);
+				for (auto gridIndex : children)
+				{
+					RectF gridRange = (layer + 1)->GetGrids()[gridIndex]->GetGridRange();
+					if (gridRange.X <= position.X&&gridRange.Y <= position.Y&&gridRange.X + gridRange.Width >= position.X&&gridRange.Y + gridRange.Height >= position.Y)
+					{
+						belongIndex = gridIndex;
+						break;
+					}
+				}
+			}
+		}
+
+		if (belongLayer == nullptr)
+		{
+			return layers[0]->GetGrids()[0];
+		}
+		else
+		{
+			return belongLayer->GetGrids()[belongIndex];
+		}
+	}
+
 	bool World::AddObject(Object* object)
 	{
-		return false;
+		auto grid = searchDestinationGrid(object);
+		return grid->AddObject(object);
 	}
 
 	bool World::RemoveObject(Object* object)
 	{
-		return false;
+		auto grid = searchDestinationGrid(object);
+		return grid->RemoveObject(object);
 	}
 }
