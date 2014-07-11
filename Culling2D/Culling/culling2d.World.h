@@ -14,7 +14,7 @@ namespace culling2d
 		std::vector<Layer*> layers;
 		std::vector<Object*> objects;
 
-		void initQuadtreeGrids(int depth, RectF range);
+		void initQuadtreeGrids(int layerResolution, RectF range);
 		void initQuadtree();
 
 		Grid* searchDestinationGrid(Object * object);

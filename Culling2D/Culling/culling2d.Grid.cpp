@@ -32,12 +32,21 @@ namespace culling2d
 		return gridRange;
 	}
 
-	std::array<int, 4> &Grid::GetChildrenIndices(int index)
+	std::array<int, 4> &Grid::GetChildrenIndices(int index, int currentResolution)
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			childrenIndices[i] = 4 * index + i;
-		}
+		int ro = (int)pow(2, currentResolution);
+		int iox = index % ro;
+		int ioy = index / ro;
+
+		int inx = iox * 2;
+		int iny = ioy * 2;
+
+		int rn = ro * 2;
+
+		childrenIndices[0] = inx + rn*iny;
+		childrenIndices[1] = inx + 1 + rn*iny;
+		childrenIndices[2] = inx + rn*(iny + 1);
+		childrenIndices[3] = inx + 1 + rn*(iny + 1);
 
 		return childrenIndices;
 	}

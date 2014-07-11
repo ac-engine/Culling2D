@@ -19,7 +19,7 @@ namespace culling2d
 		int GetResolutionLevel();
 		RectF GetGridRange();
 
-		static std::array<int,4> &GetChildrenIndices(int index);
+		static std::array<int,4> &GetChildrenIndices(int index,int currentResolution);
 		
 		bool AddObject(Object* object);
 		bool RemoveObject(Object* object);

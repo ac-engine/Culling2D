@@ -1,4 +1,5 @@
 #include "culling2d.World.h"
+#include "../Common/Math/culling2d.RectI.h"
 
 namespace culling2d
 {
@@ -7,26 +8,25 @@ namespace culling2d
 		for (int i = 0; i <= resolution; ++i)
 		{
 			layers.push_back(new Layer(i));
+			initQuadtreeGrids(i, worldRange);
 		}
-
-		initQuadtreeGrids(0, worldRange);
 	}
 
-	void World::initQuadtreeGrids(int depth, RectF range)
+	void World::initQuadtreeGrids(int layerResolution, RectF range)
 	{
-		if (depth <= resolution)
+		int division = (int)pow(2, layerResolution);
+
+		Vector2DF cellSize = range.GetSize() / division;
+		Vector2DF place = Vector2DF(0, 0);
+
+		for (int i = 0; i < division; ++i)
 		{
-			layers[depth]->GetGrids().push_back(new Grid(depth, range));
-
-			RectF d1 = RectF(range.X, range.Y, range.Width / 2, range.Height / 2);
-			RectF d2 = RectF(range.X + range.Width / 2, range.Y, range.Width / 2, range.Height / 2);
-			RectF d3 = RectF(range.X, range.Y + range.Height / 2, range.Width / 2, range.Height / 2);
-			RectF d4 = RectF(range.X + range.Width / 2, range.Y + range.Height / 2, range.Width / 2, range.Height / 2);
-
-			initQuadtreeGrids(depth + 1, d1);
-			initQuadtreeGrids(depth + 1, d2);
-			initQuadtreeGrids(depth + 1, d3);
-			initQuadtreeGrids(depth + 1, d4);
+			place.X = 0;
+			for (int j = 0; j < division; ++j)
+			{
+				layers[layerResolution]->GetGrids().push_back(new Grid(layerResolution, RectF(place.X, place.Y, cellSize.X, cellSize.Y)));
+				place.X += cellSize.X;
+			}
 		}
 	}
 
@@ -86,6 +86,7 @@ namespace culling2d
 		Layer* belongLayer = nullptr;
 		int belongIndex = 0;
 
+		int currentResolution = 0;
 		for (Layer* layer : layers)
 		{
 			auto range = layer->GetGrids()[0]->GetGridRange();
@@ -102,7 +103,7 @@ namespace culling2d
 			if (layer != layers.back())
 			{
 				auto position = object->GetCircle().Position;
-				auto children = Grid::GetChildrenIndices(belongIndex);
+				auto children = Grid::GetChildrenIndices(belongIndex, currentResolution);
 				for (auto gridIndex : children)
 				{
 					RectF gridRange = (layer + 1)->GetGrids()[gridIndex]->GetGridRange();
@@ -113,6 +114,7 @@ namespace culling2d
 					}
 				}
 			}
+			++currentResolution;
 		}
 
 		if (belongLayer == nullptr)
