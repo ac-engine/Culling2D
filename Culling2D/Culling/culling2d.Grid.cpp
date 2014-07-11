@@ -38,8 +38,8 @@ namespace culling2d
 		int iox = index % ro;
 		int ioy = index / ro;
 
-		int inx = iox * 2;
-		int iny = ioy * 2;
+		int inx = iox << 1;
+		int iny = ioy << 1;
 
 		int rn = ro << 1;
 
