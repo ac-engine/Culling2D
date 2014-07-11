@@ -34,4 +34,14 @@ namespace culling2d
 	{
 		this->userData = userData;
 	}
+
+	RectF Object::GetCurrentRange() const
+	{
+		return currentRange;
+	}
+
+	void Object::SetCurrentRange(RectF range)
+	{
+		this->currentRange = range;
+	}
 };

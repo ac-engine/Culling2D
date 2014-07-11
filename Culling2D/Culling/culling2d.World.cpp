@@ -128,6 +128,7 @@ namespace culling2d
 	bool World::AddObject(Object* object)
 	{
 		auto grid = searchDestinationGrid(object);
+		object->SetCurrentRange(grid->GetGridRange());
 		return grid->AddObject(object);
 	}
 
