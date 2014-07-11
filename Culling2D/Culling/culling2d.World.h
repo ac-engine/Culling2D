@@ -16,6 +16,8 @@ namespace culling2d
 
 		void initQuadtreeGrids(int depth, RectF range);
 		void initQuadtree();
+
+		Grid* searchDestinationGrid(Object * object);
 	public:
 		World(int resolution, RectF worldRange);
 		~World();
