@@ -13,6 +13,9 @@ namespace culling2d
 		RectF worldRange;
 		std::vector<Layer*> layers;
 		std::vector<Object*> objects;
+
+		void initQuadtreeGrids(int depth, RectF range);
+		void initQuadtree();
 	public:
 		World(int resolution, RectF worldRange);
 		~World();

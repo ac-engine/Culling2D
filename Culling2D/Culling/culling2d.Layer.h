@@ -14,6 +14,6 @@ namespace culling2d
 		~Layer();
 
 		int GetResolution();
-		std::vector<Grid*> GetGrids();
+		std::vector<Grid*> &GetGrids();
 	};
 }

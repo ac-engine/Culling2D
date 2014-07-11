@@ -2,9 +2,8 @@
 
 namespace culling2d
 {
-	Grid::Grid(int resolutionLevel, int index, RectF gridRange):
+	Grid::Grid(int resolutionLevel, RectF gridRange):
 		resolutionLevel(resolutionLevel),
-		index(index),
 		gridRange(gridRange)
 	{
 
@@ -31,11 +30,11 @@ namespace culling2d
 		return gridRange;
 	}
 
-	std::array<int, 4> Grid::GetChildrenIndice()
+	std::array<int, 4> Grid::GetChildrenIndices(int index)
 	{
-		std::array<int, 4> indice{ { 4 * index, 4 * index + 1, 4 * index + 2, 4 * index + 3 } };
+		std::array<int, 4> indices{ { 4 * index, 4 * index + 1, 4 * index + 2, 4 * index + 3 } };
 
-		return indice;
+		return indices;
 	}
 
 	bool Grid::AddObject(Object* object)
