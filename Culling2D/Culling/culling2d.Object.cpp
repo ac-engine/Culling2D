@@ -44,4 +44,13 @@ namespace culling2d
 	{
 		this->currentRange = range;
 	}
+
+	bool Object::IsProperPosition()
+	{
+		auto position = circle.Position;
+		auto radius = circle.Radius;
+
+		return currentRange.X <= position.X&&currentRange.Y <= position.Y&&currentRange.X + currentRange.Width >= position.X&&currentRange.Y + currentRange.Height >= position.Y
+			&& currentRange.Height >= radius&&currentRange.Width >= radius;
+	}
 };
