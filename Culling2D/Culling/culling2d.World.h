@@ -12,7 +12,7 @@ namespace culling2d
 		int resolution;
 		RectF worldRange;
 		std::vector<Layer*> layers;
-		std::vector<Object*> objects;
+		std::vector<Object*> tempObjects;
 
 		void initQuadtreeGrids(int layerResolution, RectF range);
 		void initQuadtree();

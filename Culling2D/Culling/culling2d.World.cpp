@@ -41,24 +41,20 @@ namespace culling2d
 
 	World::~World()
 	{
-		for (auto object : objects)
+		for (auto layer : layers)
 		{
-			delete object;
+			delete layer;
 		}
-		objects.clear();
+		layers.clear();
 	}
 
 	std::vector<Object*> &World::GetCullingObjects(RectF cullingRange)
 	{
-		for (auto object : objects)
-		{
-			delete object;
-		}
-		objects.clear();
+		tempObjects.clear();
 
 		//ここでオブジェクト摘み
 
-		return objects;
+		return tempObjects;
 	}
 
 	void World::Update()
