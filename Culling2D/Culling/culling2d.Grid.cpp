@@ -41,7 +41,7 @@ namespace culling2d
 		int inx = iox * 2;
 		int iny = ioy * 2;
 
-		int rn = ro * 2;
+		int rn = ro << 1;
 
 		childrenIndices[0] = inx + rn*iny;
 		childrenIndices[1] = inx + 1 + rn*iny;
