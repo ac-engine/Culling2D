@@ -30,11 +30,14 @@ namespace culling2d
 		return gridRange;
 	}
 
-	std::array<int, 4> Grid::GetChildrenIndices(int index)
+	std::array<int, 4> &Grid::GetChildrenIndices(int index)
 	{
-		std::array<int, 4> indices{ { 4 * index, 4 * index + 1, 4 * index + 2, 4 * index + 3 } };
+		for (int i = 0; i < 4; ++i)
+		{
+			childrenIndices[i] = 4 * index + i;
+		}
 
-		return indices;
+		return childrenIndices;
 	}
 
 	bool Grid::AddObject(Object* object)

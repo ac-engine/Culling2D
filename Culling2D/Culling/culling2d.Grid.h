@@ -12,13 +12,14 @@ namespace culling2d
 		RectF gridRange;
 		int index;
 		std::set<Object*> objects;
+		static std::array<int, 4> childrenIndices;
 	public:
 		Grid(int resolutionLevel,RectF gridRange);
 		~Grid();
 		int GetResolutionLevel();
 		RectF GetGridRange();
 
-		static std::array<int,4> GetChildrenIndices(int index);
+		static std::array<int,4> &GetChildrenIndices(int index);
 		
 		bool AddObject(Object* object);
 		bool RemoveObject(Object* object);
