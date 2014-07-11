@@ -2,6 +2,7 @@
 
 namespace culling2d
 {
+	std::array<int, 4> Grid::childrenIndices;
 	Grid::Grid(int resolutionLevel, RectF gridRange):
 		resolutionLevel(resolutionLevel),
 		gridRange(gridRange)
