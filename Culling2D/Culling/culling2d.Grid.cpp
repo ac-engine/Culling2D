@@ -34,7 +34,7 @@ namespace culling2d
 
 	std::array<int, 4> &Grid::GetChildrenIndices(int index, int currentResolution)
 	{
-		int ro = (int)pow(2, currentResolution);
+		int ro = 2 << currentResolution;
 		int iox = index % ro;
 		int ioy = index / ro;
 
