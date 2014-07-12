@@ -100,7 +100,9 @@ namespace culling2d
 		{
 			auto grid = mapObjectToGrid[improperObject];
 			grid->RemoveObject(improperObject);
-			AddObject(improperObject);
+			auto newGrid = AddObject(improperObject);
+			assert(newGrid != nullptr);
+			mapObjectToGrid[improperObject] = newGrid;
 		}
 
 		improperObjects.clear();
@@ -167,12 +169,12 @@ namespace culling2d
 		}
 	}
 
-	bool World::AddObject(Object* object)
+	Grid* World::AddObject(Object* object)
 	{
 		auto grid = searchDestinationGrid(object);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
-		return grid->AddObject(object);
+		return (grid->AddObject(object)) ? grid : nullptr;
 	}
 
 	bool World::RemoveObject(Object* object)

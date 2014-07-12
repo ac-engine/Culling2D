@@ -32,7 +32,7 @@ namespace culling2d
 		int GetResolution();
 		int RecalculateResolution();
 		RectF GetWorldRange();
-		bool AddObject(Object* object);
+		Grid* AddObject(Object* object);
 		bool RemoveObject(Object* object);
 	};
 }
