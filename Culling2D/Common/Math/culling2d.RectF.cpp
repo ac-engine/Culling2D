@@ -36,4 +36,9 @@ namespace culling2d
 		};
 		return result;
 	}
+
+	bool GetCollision(Circle circle)
+	{
+		return false;
+	}
 }

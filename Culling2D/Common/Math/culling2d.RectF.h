@@ -7,6 +7,7 @@
 #include <array>
 #include "../culling2d.common.Base.h"
 #include "culling2d.Vector2DF.h"
+#include "culling2d.Circle.h"
 
 //----------------------------------------------------------------------------------
 //
@@ -72,6 +73,13 @@ namespace culling2d {
 		@return	座標
 		*/
 		std::array<Vector2DF, 4> GetVertexes() const;
+
+		/**
+		@brief	円と衝突しているか否かを調べる。
+		@param circle 円
+		@return	衝突しているか否か
+		*/
+		bool GetCollision(Circle circle);
 	};
 
 //----------------------------------------------------------------------------------

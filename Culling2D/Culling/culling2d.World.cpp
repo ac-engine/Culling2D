@@ -52,7 +52,44 @@ namespace culling2d
 	{
 		tempObjects.clear();
 
-		//ここでオブジェクト摘み
+		for (int i = 0; i <= resolution; ++i)
+		{
+			auto layer = layers[i];
+
+			auto cellSize = layer->GetGrids()[0]->GetGridRange().GetSize();
+
+			RectF searchRange = RectF(cullingRange.X - cellSize.X / 2, cullingRange.Y - cellSize.Y / 2, cullingRange.Width + cellSize.X, cullingRange.Height + cellSize.Y);
+
+			Vector2DI upperLeft;
+			Vector2DI lowerRight;
+
+			//カリング対象のグリッド区間絞込
+			{
+				Vector2DF upperLeftRaw = (searchRange.GetPosition() - worldRange.GetPosition()) / cellSize;
+				Vector2DF lowerRightRaw = (searchRange.GetPosition() + searchRange.GetSize() - worldRange.GetPosition()) / cellSize;
+
+				upperLeftRaw.X = max(0, upperLeftRaw.X);
+				upperLeftRaw.Y = max(0, upperLeftRaw.Y);
+
+				lowerRightRaw.X = min(worldRange.GetSize().X, lowerRightRaw.X);
+				lowerRightRaw.Y = min(worldRange.GetSize().Y, lowerRightRaw.Y);
+
+				upperLeft = Vector2DI((int)floor(upperLeftRaw.X), (int)(floor)(upperLeftRaw.Y));
+				lowerRight = Vector2DI((int)floor(lowerRightRaw.X), (int)(floor)(lowerRightRaw.Y));
+			}
+
+			int xSize = 2 << resolution;
+
+			for (int j = upperLeft.X; j <= lowerRight.X; ++j)
+			{
+				for (int k = upperLeft.Y; k <= lowerRight.Y; ++k)
+				{
+					auto grid = layer->GetGrids()[k*xSize + j];
+
+					for(auto object : grid->)
+				}
+			}
+		}
 
 		return tempObjects;
 	}

@@ -19,6 +19,8 @@ namespace culling2d
 		int GetResolutionLevel();
 		RectF GetGridRange();
 
+		int GetCullingObjects(RectF cullingRange, std::vector<Object*> &cullingObjects);
+
 		static std::array<int,4> &GetChildrenIndices(int index,int currentResolution);
 		
 		bool AddObject(Object* object);

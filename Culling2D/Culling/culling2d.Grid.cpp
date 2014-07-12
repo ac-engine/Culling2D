@@ -65,4 +65,18 @@ namespace culling2d
 		}
 		return exists;
 	}
+
+	int Grid::GetCullingObjects(RectF cullingRange, std::vector<Object*> &cullingObjects)
+	{
+		int count = 0;
+		for (auto object : objects)
+		{
+			if (gridRange.GetCollision(object->GetCircle()))
+			{
+				cullingObjects.push_back(object);
+				++count;
+			}
+		}
+		return count;
+	}
 };
