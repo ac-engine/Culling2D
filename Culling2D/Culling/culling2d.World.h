@@ -1,5 +1,7 @@
 #pragma once
 #include <vector>
+#include <set>
+#include <map>
 #include "../Common/Math/culling2d.RectF.h"
 #include "culling2d.Layer.h"
 #include "culling2d.Object.h"
@@ -13,6 +15,8 @@ namespace culling2d
 		RectF worldRange;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;
+		std::set<Object*> improperObjects;
+		std::map<Object*, Grid*> mapObjectToGrid;
 
 		void initQuadtreeGrids(int layerResolution, RectF range);
 		void initQuadtree();
@@ -23,6 +27,7 @@ namespace culling2d
 		~World();
 
 		std::vector<Object*> &GetCullingObjects(RectF cullingRange);
+		void NotifyImproperGrid(Object *object);
 		void Update();
 		int GetResolution();
 		int RecalculateResolution();

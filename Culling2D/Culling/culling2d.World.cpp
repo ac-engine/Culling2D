@@ -96,7 +96,14 @@ namespace culling2d
 
 	void World::Update()
 	{
+		for (auto improperObject : improperObjects)
+		{
+			auto grid = mapObjectToGrid[improperObject];
+			grid->RemoveObject(improperObject);
+			AddObject(improperObject);
+		}
 
+		improperObjects.clear();
 	}
 
 	int World::GetResolution()
@@ -164,12 +171,19 @@ namespace culling2d
 	{
 		auto grid = searchDestinationGrid(object);
 		object->SetCurrentRange(grid->GetGridRange());
+		mapObjectToGrid[object] = grid;
 		return grid->AddObject(object);
 	}
 
 	bool World::RemoveObject(Object* object)
 	{
 		auto grid = searchDestinationGrid(object);
+		mapObjectToGrid.erase(object);
 		return grid->RemoveObject(object);
+	}
+
+	void World::NotifyImproperGrid(Object *object)
+	{
+		improperObjects.insert(object);
 	}
 }
