@@ -37,8 +37,10 @@ namespace culling2d
 		return result;
 	}
 
-	bool GetCollision(Circle circle)
+	bool RectF::GetCollision(Circle circle)
 	{
-		return false;
+		Vector2DF closest = Vector2DF(Clamp(circle.Position.X, X + Width, X), Clamp(circle.Position.Y, Y + Height, Y));
+		float distanceSquared = (closest - circle.Position).GetSquaredLength();
+		return (distanceSquared < (circle.Radius*circle.Radius));
 	}
 }
