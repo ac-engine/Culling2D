@@ -36,7 +36,6 @@
     <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp">
       <Filter>Common\Math</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Culling\culling2d.Layer.cpp">
       <Filter>Culling</Filter>
     </ClCompile>

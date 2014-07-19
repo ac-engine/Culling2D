@@ -10,45 +10,14 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Common\culling2d.common.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Matrix33.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Matrix44.cpp" />
-    <ClCompile Include="Common\Math\culling2d.RectF.cpp" />
-    <ClCompile Include="Common\Math\culling2d.RectI.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Vector2DF.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Vector2DI.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Vector3DF.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp" />
-    <ClCompile Include="Culling\culling2d.Grid.cpp" />
-    <ClCompile Include="Culling\culling2d.Layer.cpp" />
-    <ClCompile Include="Culling\culling2d.Object.cpp" />
-    <ClCompile Include="Culling\culling2d.World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Common\culling2d.common.Base.h" />
-    <ClInclude Include="Common\Math\culling2d.Circle.h" />
-    <ClInclude Include="Common\Math\culling2d.Matrix33.h" />
-    <ClInclude Include="Common\Math\culling2d.Matrix44.h" />
-    <ClInclude Include="Common\Math\culling2d.RectF.h" />
-    <ClInclude Include="Common\Math\culling2d.RectI.h" />
-    <ClInclude Include="Common\Math\culling2d.Vector2DF.h" />
-    <ClInclude Include="Common\Math\culling2d.Vector2DI.h" />
-    <ClInclude Include="Common\Math\culling2d.Vector3DF.h" />
-    <ClInclude Include="Common\Math\culling2d.Vector4DF.h" />
-    <ClInclude Include="Culling\culling2d.Grid.h" />
-    <ClInclude Include="Culling\culling2d.Layer.h" />
-    <ClInclude Include="Culling\culling2d.Object.h" />
-    <ClInclude Include="Culling\culling2d.World.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{F2375EF9-2508-4575-B5E3-06C16FEC6E0A}</ProjectGuid>
+    <ProjectGuid>{19F03066-5A7E-49CF-BC6D-725A3B5C9339}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Culling2D</RootNamespace>
+    <RootNamespace>Culling2DTest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -88,6 +57,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Culling2D.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -108,6 +78,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

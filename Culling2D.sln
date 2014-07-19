@@ -5,6 +5,11 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Culling2D", "Culling2D\Culling2D.vcxproj", "{F2375EF9-2508-4575-B5E3-06C16FEC6E0A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Culling2DTest", "Culling2DTest\Culling2DTest.vcxproj", "{19F03066-5A7E-49CF-BC6D-725A3B5C9339}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2375EF9-2508-4575-B5E3-06C16FEC6E0A} = {F2375EF9-2508-4575-B5E3-06C16FEC6E0A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +20,10 @@ Global
 		{F2375EF9-2508-4575-B5E3-06C16FEC6E0A}.Debug|Win32.Build.0 = Debug|Win32
 		{F2375EF9-2508-4575-B5E3-06C16FEC6E0A}.Release|Win32.ActiveCfg = Release|Win32
 		{F2375EF9-2508-4575-B5E3-06C16FEC6E0A}.Release|Win32.Build.0 = Release|Win32
+		{19F03066-5A7E-49CF-BC6D-725A3B5C9339}.Debug|Win32.ActiveCfg = Debug|Win32
+		{19F03066-5A7E-49CF-BC6D-725A3B5C9339}.Debug|Win32.Build.0 = Debug|Win32
+		{19F03066-5A7E-49CF-BC6D-725A3B5C9339}.Release|Win32.ActiveCfg = Release|Win32
+		{19F03066-5A7E-49CF-BC6D-725A3B5C9339}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
