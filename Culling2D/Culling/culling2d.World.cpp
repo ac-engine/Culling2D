@@ -61,7 +61,9 @@ namespace culling2d
 
 			auto cellSize = layer->GetGrids()[0]->GetGridRange().GetSize();
 
-			RectF searchRange = RectF(cullingRange.X - cellSize.X / 2, cullingRange.Y - cellSize.Y / 2, cullingRange.Width + cellSize.X, cullingRange.Height + cellSize.Y);
+			//分解能0の場合はワールド全部を探索
+			RectF searchRange = (r != 0) ? RectF(cullingRange.X - cellSize.X / 2, cullingRange.Y - cellSize.Y / 2, cullingRange.Width + cellSize.X, cullingRange.Height + cellSize.Y)
+				: layer->GetGrids()[0]->GetGridRange();
 
 			Vector2DI upperLeft;
 			Vector2DI lowerRight;
