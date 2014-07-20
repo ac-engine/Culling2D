@@ -128,15 +128,17 @@ namespace culling2d
 	Grid* World::searchDestinationGrid(Object * object)
 	{
 		Layer* belongLayer = nullptr;
+		int nextIndex = 0;
 		int belongIndex = 0;
 
 		for (int currentResolution = 0; currentResolution < layers.size(); ++currentResolution)
 		{
-			auto range = layers[currentResolution]->GetGrids()[belongIndex]->GetGridRange();
+			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
 			auto radius = object->GetCircle().Radius;
-			if (range.Height >= radius&&range.Width >= radius)
+			if (range.Height >= radius * 2 && range.Width >= radius * 2)
 			{
 				belongLayer = layers[currentResolution];
+				belongIndex = nextIndex;
 			}
 			else
 			{
@@ -157,7 +159,7 @@ namespace culling2d
 					RectF gridRange = nextLayer->GetGrids()[gridIndex]->GetGridRange();
 					if (gridRange.X <= position.X&&gridRange.Y <= position.Y&&gridRange.X + gridRange.Width >= position.X&&gridRange.Y + gridRange.Height >= position.Y)
 					{
-						belongIndex = gridIndex;
+						nextIndex = gridIndex;
 						break;
 					}
 				}
