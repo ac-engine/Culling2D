@@ -74,14 +74,20 @@ namespace culling2d
 				upperLeftRaw.X = max(0, upperLeftRaw.X);
 				upperLeftRaw.Y = max(0, upperLeftRaw.Y);
 
-				lowerRightRaw.X = min(worldRange.GetSize().X, lowerRightRaw.X);
-				lowerRightRaw.Y = min(worldRange.GetSize().Y, lowerRightRaw.Y);
+				lowerRightRaw.X = min(worldRange.GetSize().X / cellSize.X - 1, lowerRightRaw.X);
+				lowerRightRaw.Y = min(worldRange.GetSize().Y / cellSize.Y - 1, lowerRightRaw.Y);
 
 				upperLeft = Vector2DI((int)floor(upperLeftRaw.X), (int)(floor)(upperLeftRaw.Y));
 				lowerRight = Vector2DI((int)floor(lowerRightRaw.X), (int)(floor)(lowerRightRaw.Y));
 			}
 
-			int xSize = pow(2, resolution);
+#ifdef _DEBUG
+			printf("R = %d\n",r);
+			printf(" UL = %d %d\n",upperLeft.X,upperLeft.Y);
+			printf(" LR = %d %d\n", lowerRight.X, lowerRight.Y);
+#endif
+
+			int xSize = pow(2, r);
 
 			for (int x = upperLeft.X; x <= lowerRight.X; ++x)
 			{

@@ -11,6 +11,10 @@ int main(void)
 
 	world->AddObject(new Object(Circle(Vector2DF(0, 0), 10), nullptr, world));
 
+	auto objects = world->GetCullingObjects(RectF(-10, -10, 10, 10));
+
+	std::cout << "culled size = " << objects.size() << std::endl;
+
 	delete world;
 	system("pause");
 }
