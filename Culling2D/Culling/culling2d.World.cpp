@@ -17,16 +17,18 @@ namespace culling2d
 		int division = (int)pow(2, layerResolution);
 
 		Vector2DF cellSize = range.GetSize() / division;
+		auto firstX = range.GetPosition().X;
 		Vector2DF place = range.GetPosition();
 
 		for (int i = 0; i < division; ++i)
 		{
-			place.X = 0;
+			place.X = firstX;
 			for (int j = 0; j < division; ++j)
 			{
 				layers[layerResolution]->GetGrids().push_back(new Grid(layerResolution, RectF(place.X, place.Y, cellSize.X, cellSize.Y)));
 				place.X += cellSize.X;
 			}
+			place.Y += cellSize.Y;
 		}
 	}
 
@@ -36,7 +38,7 @@ namespace culling2d
 	{
 
 		initQuadtree();
-		initQuadtreeGrids(0, worldRange);
+		initQuadtreeGrids(resolution, worldRange);
 	}
 
 	World::~World()
@@ -128,27 +130,31 @@ namespace culling2d
 		Layer* belongLayer = nullptr;
 		int belongIndex = 0;
 
-		int currentResolution = 0;
-		for (Layer* layer : layers)
+		for (int currentResolution = 0; currentResolution < layers.size(); ++currentResolution)
 		{
-			auto range = layer->GetGrids()[0]->GetGridRange();
+			auto range = layers[currentResolution]->GetGrids()[belongIndex]->GetGridRange();
 			auto radius = object->GetCircle().Radius;
 			if (range.Height >= radius&&range.Width >= radius)
 			{
-				belongLayer = layer;
+				belongLayer = layers[currentResolution];
 			}
 			else
 			{
+#ifdef _DEBUG
+				printf("Layer=%d, %f %f %f %f\n", currentResolution, range.X, range.Y, range.Width, range.Height);
+#endif
 				break;
 			}
 
-			if (layer != layers.back())
+			//次に遷移するレイヤーにおけるグリッドの添字を調べる。
+			if (currentResolution < layers.size() - 1)
 			{
 				auto position = object->GetCircle().Position;
 				auto children = Grid::GetChildrenIndices(belongIndex, currentResolution);
+				auto nextLayer = layers[currentResolution + 1];
 				for (auto gridIndex : children)
 				{
-					RectF gridRange = (layer + 1)->GetGrids()[gridIndex]->GetGridRange();
+					RectF gridRange = nextLayer->GetGrids()[gridIndex]->GetGridRange();
 					if (gridRange.X <= position.X&&gridRange.Y <= position.Y&&gridRange.X + gridRange.Width >= position.X&&gridRange.Y + gridRange.Height >= position.Y)
 					{
 						belongIndex = gridIndex;
@@ -156,7 +162,6 @@ namespace culling2d
 					}
 				}
 			}
-			++currentResolution;
 		}
 
 		if (belongLayer == nullptr)

@@ -34,14 +34,14 @@ namespace culling2d
 
 	std::array<int, 4> &Grid::GetChildrenIndices(int index, int currentResolution)
 	{
-		int ro = 2 << currentResolution;
+		int ro = pow(2,currentResolution);
 		int iox = index % ro;
 		int ioy = index / ro;
 
-		int inx = iox << 1;
-		int iny = ioy << 1;
+		int inx = iox * 2;
+		int iny = ioy * 2;
 
-		int rn = ro << 1;
+		int rn = ro * 2;
 
 		childrenIndices[0] = inx + rn*iny;
 		childrenIndices[1] = inx + 1 + rn*iny;
