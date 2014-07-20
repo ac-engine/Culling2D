@@ -16,9 +16,9 @@ namespace culling2d
 	{
 		int division = (int)pow(2, layerResolution);
 
-		Vector2DF cellSize = range.GetSize() / division;
+		auto cellSize = range.GetSize() / division;
 		auto firstX = range.GetPosition().X;
-		Vector2DF place = range.GetPosition();
+		auto place = range.GetPosition();
 
 		for (int i = 0; i < division; ++i)
 		{
