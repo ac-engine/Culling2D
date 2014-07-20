@@ -143,10 +143,10 @@ namespace culling2d
 		for (int currentResolution = 0; currentResolution <=resolution; ++currentResolution)
 		{
 			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
-			auto radius = object->GetCircle().Radius;
+			auto diameter = object->GetCircle().Radius * 2;
 
 			//ƒOƒŠƒbƒh‚Ìc‰¡‚ª‚»‚ê‚¼‚ê‰~‚Ì’¼Œa‚ðã‰ñ‚Á‚Ä‚¢‚È‚¢‚©’²‚×‚éB
-			if (range.Height >= radius * 2 && range.Width >= radius * 2)
+			if (range.Height >= diameter && range.Width >= diameter)
 			{
 				belongLayer = layers[currentResolution];
 				belongIndex = nextIndex;
