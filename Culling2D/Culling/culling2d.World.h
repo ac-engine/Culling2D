@@ -12,6 +12,7 @@ namespace culling2d
 	class World
 	{
 		int resolution;
+		int maxResolution;
 		RectF worldRange;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;

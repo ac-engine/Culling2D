@@ -34,7 +34,8 @@ namespace culling2d
 
 	World::World(int resolution, RectF worldRange) :
 		resolution(resolution),
-		worldRange(worldRange)
+		worldRange(worldRange),
+		maxResolution(resolution)
 	{
 
 		initQuadtree();
@@ -54,9 +55,9 @@ namespace culling2d
 	{
 		tempObjects.clear();
 
-		for (int i = 0; i <= resolution; ++i)
+		for (int r = 0; r <= resolution; ++r)
 		{
-			auto layer = layers[i];
+			auto layer = layers[r];
 
 			auto cellSize = layer->GetGrids()[0]->GetGridRange().GetSize();
 
@@ -80,13 +81,13 @@ namespace culling2d
 				lowerRight = Vector2DI((int)floor(lowerRightRaw.X), (int)(floor)(lowerRightRaw.Y));
 			}
 
-			int xSize = 2 << resolution;
+			int xSize = pow(2, resolution);
 
-			for (int j = upperLeft.X; j <= lowerRight.X; ++j)
+			for (int x = upperLeft.X; x <= lowerRight.X; ++x)
 			{
-				for (int k = upperLeft.Y; k <= lowerRight.Y; ++k)
+				for (int y = upperLeft.Y; y <= lowerRight.Y; ++y)
 				{
-					auto grid = layer->GetGrids()[k*xSize + j];
+					auto grid = layer->GetGrids()[y*xSize + x];
 
 					grid->GetCullingObjects(searchRange, tempObjects);
 				}
@@ -131,10 +132,12 @@ namespace culling2d
 		int nextIndex = 0;
 		int belongIndex = 0;
 
-		for (int currentResolution = 0; currentResolution < layers.size(); ++currentResolution)
+		for (int currentResolution = 0; currentResolution <=resolution; ++currentResolution)
 		{
 			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
 			auto radius = object->GetCircle().Radius;
+
+			//ƒOƒŠƒbƒh‚Ìc‰¡‚ª‚»‚ê‚¼‚ê‰~‚Ì’¼Œa‚ðã‰ñ‚Á‚Ä‚¢‚È‚¢‚©’²‚×‚éB
 			if (range.Height >= radius * 2 && range.Width >= radius * 2)
 			{
 				belongLayer = layers[currentResolution];
