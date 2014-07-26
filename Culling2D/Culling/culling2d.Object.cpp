@@ -15,7 +15,7 @@ namespace culling2d
 
 	}
 
-	const Circle& Object::GetCircle()
+	const Circle& Object::GetCircle() const
 	{
 		return circle;
 	}
@@ -25,7 +25,7 @@ namespace culling2d
 		this->circle = circle;
 	}
 
-	const void* Object::GetUserData()
+	const void* Object::GetUserData() const
 	{
 		return userData;
 	}

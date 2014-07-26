@@ -119,7 +119,7 @@ namespace culling2d
 		improperObjects.clear();
 	}
 
-	int World::GetResolution()
+	int World::GetResolution() const
 	{
 		return resolution;
 	}
@@ -129,7 +129,7 @@ namespace culling2d
 		return resolution;
 	}
 
-	RectF World::GetWorldRange()
+	RectF World::GetWorldRange() const
 	{
 		return worldRange;
 	}

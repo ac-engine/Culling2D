@@ -18,9 +18,9 @@ namespace culling2d
 		Object(Circle circle, void* userData, World *worldRef);
 		~Object();
 
-		const Circle& GetCircle();
+		const Circle& GetCircle() const;
 		void SetCircle(Circle circle);
-		const void* GetUserData();
+		const void* GetUserData() const;
 		void SetUserData(void* userData);
 
 		RectF GetCurrentRange() const;

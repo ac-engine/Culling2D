@@ -16,8 +16,8 @@ namespace culling2d
 	public:
 		Grid(int resolutionLevel,RectF gridRange);
 		~Grid();
-		int GetResolutionLevel();
-		RectF GetGridRange();
+		int GetResolutionLevel() const;
+		RectF GetGridRange() const;
 
 		int GetCullingObjects(RectF cullingRange, std::vector<Object*> &cullingObjects);
 

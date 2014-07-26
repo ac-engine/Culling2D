@@ -22,12 +22,12 @@ namespace culling2d
 		objects.clear();
 	}
 
-	int Grid::GetResolutionLevel()
+	int Grid::GetResolutionLevel() const
 	{
 		return resolutionLevel;
 	}
 
-	RectF Grid::GetGridRange()
+	RectF Grid::GetGridRange() const
 	{
 		return gridRange;
 	}

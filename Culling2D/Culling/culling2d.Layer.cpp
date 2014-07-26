@@ -16,7 +16,7 @@ namespace culling2d
 		grids.clear();
 	}
 
-	int Layer::GetResolution()
+	int Layer::GetResolution() const
 	{
 		return resolution;
 	}
