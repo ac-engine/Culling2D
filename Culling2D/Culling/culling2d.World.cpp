@@ -14,7 +14,7 @@ namespace culling2d
 
 	void World::initQuadtreeGrids(int layerResolution, RectF range)
 	{
-		int division = (int)pow(2, layerResolution);
+		int division = 1 << layerResolution;
 
 		auto cellSize = range.GetSize() / division;
 		auto place = range.GetPosition();
@@ -89,7 +89,7 @@ namespace culling2d
 			printf(" LR = %d %d\n", lowerRight.X, lowerRight.Y);
 #endif
 
-			int xSize = pow(2, r);
+			int xSize = 1 << r;
 
 			for (int x = upperLeft.X; x <= lowerRight.X; ++x)
 			{
