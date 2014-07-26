@@ -17,8 +17,8 @@ namespace culling2d
 		int division = (int)pow(2, layerResolution);
 
 		auto cellSize = range.GetSize() / division;
-		auto firstX = range.GetPosition().X;
 		auto place = range.GetPosition();
+		auto firstX = place.X;
 
 		for (int i = 0; i < division; ++i)
 		{
@@ -84,8 +84,8 @@ namespace culling2d
 			}
 
 #ifdef _DEBUG
-			printf("R = %d\n",r);
-			printf(" UL = %d %d\n",upperLeft.X,upperLeft.Y);
+			printf("R = %d\n", r);
+			printf(" UL = %d %d\n", upperLeft.X, upperLeft.Y);
 			printf(" LR = %d %d\n", lowerRight.X, lowerRight.Y);
 #endif
 
@@ -140,7 +140,7 @@ namespace culling2d
 		int nextIndex = 0;
 		int belongIndex = 0;
 
-		for (int currentResolution = 0; currentResolution <=resolution; ++currentResolution)
+		for (int currentResolution = 0; currentResolution <= resolution; ++currentResolution)
 		{
 			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
 			auto diameter = object->GetCircle().Radius * 2;
@@ -157,21 +157,24 @@ namespace culling2d
 			}
 
 			//次に遷移するレイヤーにおけるグリッドの添字を調べる。
-			if (currentResolution < layers.size() - 1)
+			if (currentResolution >= layers.size() - 1)
 			{
-				auto position = object->GetCircle().Position;
-				auto children = Grid::GetChildrenIndices(belongIndex, currentResolution);
-				auto nextLayer = layers[currentResolution + 1];
-				for (auto gridIndex : children)
+				continue;
+			}
+
+			auto position = object->GetCircle().Position;
+			auto children = Grid::GetChildrenIndices(belongIndex, currentResolution);
+			auto nextLayer = layers[currentResolution + 1];
+			for (auto gridIndex : children)
+			{
+				RectF gridRange = nextLayer->GetGrids()[gridIndex]->GetGridRange();
+				if (gridRange.X <= position.X&&gridRange.Y <= position.Y&&gridRange.X + gridRange.Width >= position.X&&gridRange.Y + gridRange.Height >= position.Y)
 				{
-					RectF gridRange = nextLayer->GetGrids()[gridIndex]->GetGridRange();
-					if (gridRange.X <= position.X&&gridRange.Y <= position.Y&&gridRange.X + gridRange.Width >= position.X&&gridRange.Y + gridRange.Height >= position.Y)
-					{
-						nextIndex = gridIndex;
-						break;
-					}
+					nextIndex = gridIndex;
+					break;
 				}
 			}
+
 		}
 
 
@@ -199,7 +202,7 @@ namespace culling2d
 
 	bool World::RemoveObject(Object* object)
 	{
-		auto grid = searchDestinationGrid(object);
+		auto grid = mapObjectToGrid[object];
 		mapObjectToGrid.erase(object);
 		return grid->RemoveObject(object);
 	}
