@@ -26,7 +26,7 @@ namespace culling2d
 		RectF GetCurrentRange() const;
 		void SetCurrentRange(RectF range);
 
-		bool IsProperPosition();
+		bool IsProperPosition() const;
 
 	};
 }

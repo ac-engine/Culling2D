@@ -45,7 +45,7 @@ namespace culling2d
 		this->currentRange = range;
 	}
 
-	bool Object::IsProperPosition()
+	bool Object::IsProperPosition() const
 	{
 		auto position = circle.Position;
 		auto radius = circle.Radius;
