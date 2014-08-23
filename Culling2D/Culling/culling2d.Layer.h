@@ -5,6 +5,7 @@
 namespace culling2d
 {
 	class Layer
+		:public ReferenceObject
 	{
 		int resolution;
 		std::vector<Grid*> grids;
@@ -14,6 +15,8 @@ namespace culling2d
 		~Layer();
 
 		int GetResolution() const;
-		std::vector<Grid*> &GetGrids();
+		const std::vector<Grid*> &GetGrids();
+		void AddGrid(Grid* grid);
+		void RemoveGrid(Grid* grid);
 	};
 }

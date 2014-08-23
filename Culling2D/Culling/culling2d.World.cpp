@@ -25,7 +25,7 @@ namespace culling2d
 			place.X = firstX;
 			for (int j = 0; j < division; ++j)
 			{
-				layers[layerResolution]->GetGrids().push_back(new Grid(layerResolution, RectF(place.X, place.Y, cellSize.X, cellSize.Y)));
+				layers[layerResolution]->AddGrid(new Grid(layerResolution, RectF(place.X, place.Y, cellSize.X, cellSize.Y)));
 				place.X += cellSize.X;
 			}
 			place.Y += cellSize.Y;
@@ -37,7 +37,6 @@ namespace culling2d
 		worldRange(worldRange),
 		maxResolution(resolution)
 	{
-
 		initQuadtree();
 		initQuadtreeGrids(resolution, worldRange);
 	}
@@ -46,7 +45,7 @@ namespace culling2d
 	{
 		for (auto layer : layers)
 		{
-			delete layer;
+			SafeDelete(layer);
 		}
 		layers.clear();
 	}

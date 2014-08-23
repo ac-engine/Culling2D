@@ -6,10 +6,12 @@
 #include "culling2d.Layer.h"
 #include "culling2d.Object.h"
 #include "culling2d.Grid.h"
+#include "../culling2d.ReferenceObject.h"
 
 namespace culling2d
 {
 	class World
+		:public ReferenceObject
 	{
 		int resolution;
 		int maxResolution;

@@ -3,10 +3,12 @@
 #include "culling2d.Object.h"
 #include <vector>
 #include <array>
+#include "../culling2d.ReferenceObject.h"
 
 namespace culling2d
 {
 	class Grid
+		:public ReferenceObject
 	{
 		int resolutionLevel;
 		RectF gridRange;

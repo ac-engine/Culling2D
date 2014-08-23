@@ -1,4 +1,5 @@
 #include "culling2d.Layer.h"
+#include "../culling2d.ReferenceObject.h"
 
 namespace culling2d
 {
@@ -11,7 +12,7 @@ namespace culling2d
 	Layer::~Layer(){
 		for (int i = 0; i < grids.size(); ++i)
 		{
-			delete grids[i];
+			SafeDelete(grids[i]);
 		}
 		grids.clear();
 	}
@@ -21,8 +22,22 @@ namespace culling2d
 		return resolution;
 	}
 
-	std::vector<Grid*> &Layer::GetGrids()
+	const std::vector<Grid*> &Layer::GetGrids()
 	{
 		return grids;
 	}
+
+	void Layer::AddGrid(Grid* grid)
+	{
+		SafeAddRef(grid);
+		grids.push_back(grid);
+	}
+
+	void Layer::RemoveGrid(Grid* grid)
+	{
+		SafeRelease(grid);
+		grids.erase(remove(grids.begin(), grids.end(), grid), grids.end());
+	}
+
+
 };

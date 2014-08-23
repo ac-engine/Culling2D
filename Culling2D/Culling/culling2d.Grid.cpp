@@ -16,7 +16,7 @@ namespace culling2d
 		
 		for(auto object : objects)
 		{
-			delete object;
+			SafeRelease(object);
 		}
 		
 		objects.clear();
@@ -53,6 +53,7 @@ namespace culling2d
 
 	bool Grid::AddObject(Object* object)
 	{
+		SafeAddRef(object);
 		return objects.insert(object).second;
 	}
 
@@ -61,6 +62,7 @@ namespace culling2d
 		bool exists = objects.find(object) != objects.end();
 		if (exists)
 		{
+			SafeRelease(object);
 			objects.erase(object);
 		}
 		return exists;
@@ -73,6 +75,7 @@ namespace culling2d
 		{
 			if (gridRange.GetCollision(object->GetCircle()))
 			{
+				SafeAddRef(object);
 				cullingObjects.push_back(object);
 				++count;
 			}

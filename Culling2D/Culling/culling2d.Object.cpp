@@ -1,4 +1,6 @@
 #include "culling2d.Object.h"
+#include "culling2d.World.h"
+#include "../culling2d.ReferenceObject.h"
 
 namespace culling2d
 {
@@ -7,12 +9,12 @@ namespace culling2d
 		userData(userData),
 		worldRef(worldRef)
 	{
-
+		SafeAddRef(worldRef);
 	}
 
 	Object::~Object()
 	{
-
+		SafeRelease(worldRef);
 	}
 
 	const Circle& Object::GetCircle() const

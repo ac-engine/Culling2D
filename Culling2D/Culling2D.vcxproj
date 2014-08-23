@@ -20,6 +20,7 @@
     <ClCompile Include="Common\Math\culling2d.Vector2DI.cpp" />
     <ClCompile Include="Common\Math\culling2d.Vector3DF.cpp" />
     <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp" />
+    <ClCompile Include="culling2d.ReferenceObject.cpp" />
     <ClCompile Include="Culling\culling2d.Grid.cpp" />
     <ClCompile Include="Culling\culling2d.Layer.cpp" />
     <ClCompile Include="Culling\culling2d.Object.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="Common\Math\culling2d.Vector2DI.h" />
     <ClInclude Include="Common\Math\culling2d.Vector3DF.h" />
     <ClInclude Include="Common\Math\culling2d.Vector4DF.h" />
+    <ClInclude Include="culling2d.ReferenceObject.h" />
     <ClInclude Include="Culling\culling2d.Grid.h" />
     <ClInclude Include="Culling\culling2d.Layer.h" />
     <ClInclude Include="Culling\culling2d.Object.h" />

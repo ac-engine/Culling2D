@@ -1,6 +1,7 @@
 #pragma once
 #include "../Common/Math/culling2d.Circle.h"
 #include "../Common/Math/culling2d.RectF.h"
+#include "../culling2d.ReferenceObject.h"
 
 namespace culling2d
 {
@@ -8,6 +9,7 @@ namespace culling2d
 	class Grid;
 
 	class Object
+		:public ReferenceObject
 	{
 		Circle circle;
 		void *userData;

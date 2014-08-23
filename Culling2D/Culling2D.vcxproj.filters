@@ -51,6 +51,7 @@
     <ClCompile Include="Common\culling2d.common.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="culling2d.ReferenceObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Math\culling2d.Matrix33.h">
@@ -95,5 +96,6 @@
     <ClInclude Include="Common\culling2d.common.Base.h">
       <Filter>Common</Filter>
     </ClInclude>
+    <ClInclude Include="culling2d.ReferenceObject.h" />
   </ItemGroup>
 </Project>
