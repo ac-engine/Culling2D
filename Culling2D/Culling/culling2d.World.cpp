@@ -184,8 +184,8 @@ namespace culling2d
 		else
 		{
 #ifdef _DEBUG
-			auto range = belongLayer->GetGrids()[belongIndex]->GetGridRange();
-			printf("Layer=%d, %f %f %f %f\n", belongLayer->GetResolution(), range.X, range.Y, range.Width, range.Height);
+			//auto range = belongLayer->GetGrids()[belongIndex]->GetGridRange();
+			//printf("Layer=%d, %f %f %f %f\n", belongLayer->GetResolution(), range.X, range.Y, range.Width, range.Height);
 #endif
 			return belongLayer->GetGrids()[belongIndex];
 		}
