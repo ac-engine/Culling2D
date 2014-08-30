@@ -7,7 +7,9 @@ namespace culling2d
 	{
 		for (int i = 0; i <= resolution; ++i)
 		{
-			layers.push_back(new Layer(i));
+			auto layer = new Layer(i);
+			SafeAddRef(layer);
+			layers.push_back(layer);
 			initQuadtreeGrids(i, worldRange);
 		}
 	}
