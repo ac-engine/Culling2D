@@ -12,7 +12,7 @@ namespace culling2d {
 	//
 	//----------------------------------------------------------------------------------
 	ReferenceObject::ReferenceObject()
-		: m_reference(0)
+		: m_reference(1)
 	{
 
 	}
@@ -48,9 +48,7 @@ namespace culling2d {
 	{
 		assert(m_reference > 0);
 
-		int refcount = std::atomic_fetch_sub_explicit(&m_reference, 1, std::memory_order_consume);
-
-		bool destroy = refcount == 1;
+		bool destroy = std::atomic_fetch_sub_explicit(&m_reference, 1, std::memory_order_consume) == 1;
 		if (destroy)
 		{
 			delete this;

@@ -29,6 +29,6 @@ int main(void)
 
 	std::cout << "ˆ—ŽžŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
-	delete world;
+	SafeRelease(world);
 	system("pause");
 }

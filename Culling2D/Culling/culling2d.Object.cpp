@@ -14,7 +14,6 @@ namespace culling2d
 
 	Object::~Object()
 	{
-		printf("deleted");
 		SafeRelease(worldRef);
 	}
 
