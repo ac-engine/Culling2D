@@ -3,10 +3,14 @@
 #include <random>
 #include <chrono>
 #include <memory>
+#include <vector>
 using namespace culling2d;
+
+const int OBJECTNUM = 100;
 
 int main(void)
 {
+	std::vector<Object*> objects;
 	World* world = new World(5, RectF(-100, -100, 200, 200));
 
 	std::random_device seed_gen;
@@ -16,11 +20,16 @@ int main(void)
 	// [-1.0, 1.0)‚Ì’l‚Ì”ÍˆÍ‚ÅA“™Šm—¦‚ÉÀ”‚ğ¶¬‚·‚é
 	std::uniform_real_distribution<> dist1(0, 1.0);
 
+	for (int i = 0; i < OBJECTNUM; ++i)
+	{
+		objects.push_back(new Object(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 10), nullptr, world));
+	}
+
 	const auto startTime = std::chrono::system_clock::now();
 
-	for (int i = 0; i < 1000000; ++i)
+	for (int i = 0; i < OBJECTNUM; ++i)
 	{
-		world->AddObject(new Object(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 10), nullptr, world));
+		world->AddObject(objects[i]);
 	}
 
 	const auto endTime = std::chrono::system_clock::now();
@@ -30,5 +39,11 @@ int main(void)
 	std::cout << "ˆ—ŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
 	SafeRelease(world);
+
+	for (int i = 0; i < OBJECTNUM; ++i)
+	{
+		SafeRelease(objects[i]);
+	}
+
 	system("pause");
 }
