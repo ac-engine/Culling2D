@@ -75,7 +75,7 @@ namespace culling2d
 		{
 			if (gridRange.GetCollision(object->GetCircle()))
 			{
-				SafeAddRef(object);
+				//SafeAddRef(object);
 				cullingObjects.push_back(object);
 				++count;
 			}
