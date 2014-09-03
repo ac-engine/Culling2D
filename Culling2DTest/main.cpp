@@ -7,6 +7,19 @@
 using namespace culling2d;
 
 const int OBJECTNUM = 100;
+const int TURN = 100;
+
+class ClientCircle
+{
+	Circle circle;
+public:
+	ClientCircle(){}
+
+	ClientCircle(Circle circle)
+	{
+		this->circle = circle;
+	}
+};
 
 int main(void)
 {
@@ -40,6 +53,23 @@ int main(void)
 	const auto timeSpan = endTime - startTime;
 
 	std::cout << "ˆ—ŽžŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+
+	for (int j = 0; j < TURN; ++j)
+	{
+
+		for (int i = 0; i < OBJECTNUM; ++i)
+		{
+			auto circle = objects[i]->GetCircle();
+			circle.Position.X += 1;
+			if (circle.Position.X >= 90)
+			{
+				circle.Position.X = -90;
+			}
+			objects[i]->SetCircle(circle);
+		}
+
+		world->Update();
+	}
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{

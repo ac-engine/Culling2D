@@ -9,6 +9,8 @@ namespace culling2d
 		Vector2DF Position;
 		float Radius;
 
+		Circle(){}
+
 		Circle(Vector2DF position, float radius)
 		{
 			Position = position;
