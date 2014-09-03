@@ -29,7 +29,10 @@ int main(void)
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
-		world->AddObject(objects[i]);
+		if (world->AddObject(objects[i]) == nullptr)
+		{
+			exit(-1);
+		}
 	}
 
 	const auto endTime = std::chrono::system_clock::now();
@@ -38,12 +41,12 @@ int main(void)
 
 	std::cout << "ˆ—ŽžŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
-	SafeRelease(world);
-
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
-		SafeRelease(objects[i]);
+		world->RemoveObject(objects[i]);
 	}
+
+	SafeRelease(world);
 
 	system("pause");
 }

@@ -199,7 +199,7 @@ namespace culling2d
 
 	bool World::RemoveObject(Object* object)
 	{
-		auto grid = mapObjectToGrid[object];
+		auto grid = mapObjectToGrid.at(object);
 		mapObjectToGrid.erase(object);
 		return grid->RemoveObject(object);
 	}
