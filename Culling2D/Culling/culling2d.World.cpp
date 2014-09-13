@@ -106,8 +106,23 @@ namespace culling2d
 		return tempObjects;
 	}
 
-	void World::Update()
+	void World::Update(RectF* updateRange)
 	{
+		if (updateRange == nullptr)
+		{
+			updateRange = &worldRange;
+		}
+
+		auto objects = GetCullingObjects(*updateRange);
+
+		for (auto object : objects)
+		{
+			if (!object->IsProperPosition())
+			{
+				NotifyImproperGrid(object);
+			}
+		}
+
 		for (auto improperObject : improperObjects)
 		{
 			auto grid = mapObjectToGrid[improperObject];

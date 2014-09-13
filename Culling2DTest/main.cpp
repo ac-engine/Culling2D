@@ -5,10 +5,6 @@
 #include <memory>
 #include <vector>
 using namespace culling2d;
-
-const int OBJECTNUM = 100;
-const int TURN = 100;
-
 class ClientCircle
 {
 	Circle circle;
@@ -21,7 +17,7 @@ public:
 	}
 };
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	std::vector<Object*> objects;
 	World* world = new World(5, RectF(-100, -100, 200, 200));
@@ -31,14 +27,17 @@ int main(void)
 
 	// 一様実数分布
 	// [-1.0, 1.0)の値の範囲で、等確率に実数を生成する
-	std::uniform_real_distribution<> dist1(0, 1.0);
+	std::uniform_real_distribution<float> dist1(0, 1.0);
+
+	int OBJECTNUM = atoi(argv[1]);
+	int TURN = atoi(argv[2]);
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
 		objects.push_back(new Object(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 10), nullptr, world));
 	}
 
-	const auto startTime = std::chrono::system_clock::now();
+	auto startTime = std::chrono::system_clock::now();
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
@@ -48,11 +47,13 @@ int main(void)
 		}
 	}
 
-	const auto endTime = std::chrono::system_clock::now();
+	auto endTime = std::chrono::system_clock::now();
 
-	const auto timeSpan = endTime - startTime;
+	auto timeSpan = endTime - startTime;
 
-	std::cout << "処理時間:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+	std::cout << "追加処理時間:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+
+	startTime = std::chrono::system_clock::now();
 
 	for (int j = 0; j < TURN; ++j)
 	{
@@ -71,12 +72,26 @@ int main(void)
 		world->Update();
 	}
 
+	endTime = std::chrono::system_clock::now();
+
+	timeSpan = endTime - startTime;
+
+	std::cout << "更新処理時間:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+
+	startTime = std::chrono::system_clock::now();
+
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
 		world->RemoveObject(objects[i]);
 	}
 
 	SafeRelease(world);
+
+	endTime = std::chrono::system_clock::now();
+
+	timeSpan = endTime - startTime;
+
+	std::cout << "削除処理時間:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
 	system("pause");
 }

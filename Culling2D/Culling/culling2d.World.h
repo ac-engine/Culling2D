@@ -31,7 +31,7 @@ namespace culling2d
 
 		std::vector<Object*> &GetCullingObjects(RectF cullingRange);
 		void NotifyImproperGrid(Object *object);
-		void Update();
+		void Update(RectF* updateRange = nullptr);
 		int GetResolution() const;
 		int RecalculateResolution();
 		RectF GetWorldRange() const;
