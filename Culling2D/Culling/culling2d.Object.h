@@ -16,8 +16,9 @@ namespace culling2d
 		World *worldRef;
 
 		RectF currentRange;
+		unsigned int id;
 	public:
-		Object(Circle circle, void* userData, World *worldRef);
+		Object(Circle circle, void* userData, World *worldRef,unsigned int id);
 		~Object();
 
 		const Circle& GetCircle() const;
@@ -30,5 +31,7 @@ namespace culling2d
 
 		bool IsProperPosition() const;
 
+		void SetID(unsigned int id);
+		unsigned int GetID();
 	};
 }

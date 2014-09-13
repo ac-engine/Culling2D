@@ -102,7 +102,10 @@ namespace culling2d
 				}
 			}
 		}
-
+		std::sort(tempObjects.begin(), tempObjects.end(), [](Object* obj1, Object* obj2)
+		{
+			return obj1->GetID() > obj2->GetID();
+		});
 		return tempObjects;
 	}
 

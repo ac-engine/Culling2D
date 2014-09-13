@@ -4,10 +4,11 @@
 
 namespace culling2d
 {
-	Object::Object(Circle circle, void* userData, World *worldRef):
+	Object::Object(Circle circle, void* userData, World *worldRef, unsigned int id):
 		circle(circle),
 		userData(userData),
-		worldRef(worldRef)
+		worldRef(worldRef),
+		id(id)
 	{
 		SafeAddRef(worldRef);
 	}
@@ -58,5 +59,15 @@ namespace culling2d
 
 		return currentRange.X <= position.X&&currentRange.Y <= position.Y&&currentRange.X + currentRange.Width >= position.X&&currentRange.Y + currentRange.Height >= position.Y
 			&& currentRange.Height >= radius&&currentRange.Width >= radius;
+	}
+
+	void Object::SetID(unsigned int id)
+	{
+		this->id = id;
+	}
+
+	unsigned int Object::GetID()
+	{
+		return id;
 	}
 };
