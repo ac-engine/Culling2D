@@ -16,5 +16,14 @@ namespace culling2d
 			Position = position;
 			Radius = radius;
 		}
+
+		bool operator==(Circle circle) {
+			return Position == circle.Position&&Radius == circle.Radius;
+		}
+
+		bool operator!=(Circle circle)
+		{
+			return Position != circle.Position||Radius != circle.Radius;
+		}
 	};
 }
