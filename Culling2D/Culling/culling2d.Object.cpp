@@ -26,8 +26,8 @@ namespace culling2d
 	{
 		if (this->circle != circle)
 		{
-			worldRef->NotifyMoved(this);
 			this->circle = circle;
+			worldRef->NotifyMoved(this);
 		}
 	}
 
