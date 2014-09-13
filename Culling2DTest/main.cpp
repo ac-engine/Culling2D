@@ -92,6 +92,4 @@ int main(int argc, char *argv[])
 	timeSpan = endTime - startTime;
 
 	std::cout << "íœˆ—ŽžŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
-
-	system("pause");
 }
