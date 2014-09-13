@@ -87,14 +87,15 @@ int main(int argc, char *argv[])
 
 	SafeRelease(world);
 
-	endTime = std::chrono::system_clock::now();
-
-	timeSpan = endTime - startTime;
-
-	std::cout << "íœˆ—ŽžŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
 		SafeRelease(objects[i]);
 	}
+
+	endTime = std::chrono::system_clock::now();
+
+	timeSpan = endTime - startTime;
+
+	std::cout << "íœˆ—ŽžŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 }
