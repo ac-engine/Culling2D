@@ -36,8 +36,8 @@ namespace culling2d
 
 	void Layer::RemoveGrid(Grid* grid)
 	{
-		SafeRelease(grid);
 		grids.erase(remove(grids.begin(), grids.end(), grid), grids.end());
+		SafeRelease(grid);
 	}
 
 

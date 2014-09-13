@@ -13,7 +13,6 @@ namespace culling2d
 
 	Grid::~Grid()
 	{
-		
 		for(auto object : objects)
 		{
 			SafeRelease(object);
@@ -53,8 +52,12 @@ namespace culling2d
 
 	bool Grid::AddObject(Object* object)
 	{
-		SafeAddRef(object);
-		return objects.insert(object).second;
+		bool inserted = objects.insert(object).second;
+		if (inserted)
+		{
+			SafeAddRef(object);
+		}
+		return inserted;
 	}
 
 	bool Grid::RemoveObject(Object* object)
@@ -62,8 +65,8 @@ namespace culling2d
 		bool exists = objects.find(object) != objects.end();
 		if (exists)
 		{
-			SafeRelease(object);
 			objects.erase(object);
+			SafeRelease(object);
 		}
 		return exists;
 	}
