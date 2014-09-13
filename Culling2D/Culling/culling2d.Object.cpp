@@ -25,6 +25,7 @@ namespace culling2d
 	void Object::SetCircle(Circle circle)
 	{
 		this->circle = circle;
+		worldRef->NotifyMoved(this);
 	}
 
 	const void* Object::GetUserData() const
