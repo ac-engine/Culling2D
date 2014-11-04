@@ -4,7 +4,9 @@
 #include <chrono>
 #include <memory>
 #include <vector>
+
 using namespace culling2d;
+
 class ClientCircle
 {
 	Circle circle;
