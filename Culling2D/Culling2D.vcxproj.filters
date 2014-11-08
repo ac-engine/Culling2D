@@ -54,48 +54,6 @@
     <ClCompile Include="culling2d.ReferenceObject.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Common\Math\culling2d.Matrix33.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.Matrix44.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.RectF.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.RectI.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.Vector2DF.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.Vector2DI.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.Vector3DF.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.Vector4DF.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Math\culling2d.Circle.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Culling\culling2d.Layer.h">
-      <Filter>Culling</Filter>
-    </ClInclude>
-    <ClInclude Include="Culling\culling2d.Grid.h">
-      <Filter>Culling</Filter>
-    </ClInclude>
-    <ClInclude Include="Culling\culling2d.Object.h">
-      <Filter>Culling</Filter>
-    </ClInclude>
-    <ClInclude Include="Culling\culling2d.World.h">
-      <Filter>Culling</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\culling2d.common.Base.h">
-      <Filter>Common</Filter>
-    </ClInclude>
-    <ClInclude Include="culling2d.ReferenceObject.h" />
+    <ClInclude Include="Culling2D.h" />
   </ItemGroup>
 </Project>

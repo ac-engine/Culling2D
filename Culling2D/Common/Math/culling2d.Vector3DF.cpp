@@ -6,8 +6,7 @@
 #if defined(_M_X86) && defined(__x86__)
 #include <emmintrin.h>
 #endif
-#include "culling2d.Vector3DF.h"
-#include "culling2d.Matrix44.h"
+#include "../../Culling2D.h"
 
 //----------------------------------------------------------------------------------
 //

@@ -1,5 +1,4 @@
-#include "culling2d.Layer.h"
-#include "../culling2d.ReferenceObject.h"
+#include "../Culling2D.h"
 
 namespace culling2d
 {

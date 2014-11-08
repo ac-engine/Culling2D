@@ -1,5 +1,4 @@
-#include "culling2d.World.h"
-#include "../Common/Math/culling2d.RectI.h"
+#include "../Culling2D.h"
 
 namespace culling2d
 {

@@ -1,6 +1,4 @@
-#include "culling2d.Object.h"
-#include "culling2d.World.h"
-#include "../culling2d.ReferenceObject.h"
+#include "../Culling2D.h"
 
 namespace culling2d
 {
