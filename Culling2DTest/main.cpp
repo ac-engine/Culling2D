@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "../Culling2D/Culling2D.h"
 #include <random>
 #include <chrono>
@@ -27,15 +27,15 @@ int main(int argc, char *argv[])
 	std::random_device seed_gen;
 	std::mt19937 engine(seed_gen());
 
-	// ˆê—lÀ”•ª•z
-	// [-1.0, 1.0)‚Ì’l‚Ì”ÍˆÍ‚ÅA“™Šm—¦‚ÉÀ”‚ğ¶¬‚·‚é
+	// ä¸€æ§˜å®Ÿæ•°åˆ†å¸ƒ
+	// [-1.0, 1.0)ã®å€¤ã®ç¯„å›²ã§ã€ç­‰ç¢ºç‡ã«å®Ÿæ•°ã‚’ç”Ÿæˆã™ã‚‹
 	std::uniform_real_distribution<float> dist1(0, 1.0);
 
-	std::cout << "ƒIƒuƒWƒFƒNƒg”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B" << std::endl;
+	std::cout << "ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆæ•°ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚" << std::endl;
 	int OBJECTNUM;
 	std::cin >> OBJECTNUM;
 
-	std::cout << "XV‰ñ”‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B" << std::endl;
+	std::cout << "æ›´æ–°å›æ•°ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚" << std::endl;
 	int TURN;
 	std::cin >> TURN;
 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
 	auto timeSpan = endTime - startTime;
 
-	std::cout << "’Ç‰Áˆ—ŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+	std::cout << "è¿½åŠ å‡¦ç†æ™‚é–“:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
 	startTime = std::chrono::system_clock::now();
 
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 
 	timeSpan = endTime - startTime;
 
-	std::cout << "XVˆ—ŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+	std::cout << "æ›´æ–°å‡¦ç†æ™‚é–“:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 
 	startTime = std::chrono::system_clock::now();
 
@@ -104,5 +104,5 @@ int main(int argc, char *argv[])
 
 	timeSpan = endTime - startTime;
 
-	std::cout << "íœˆ—ŠÔ:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+	std::cout << "å‰Šé™¤å‡¦ç†æ™‚é–“:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
 }

@@ -1,4 +1,4 @@
-#include "../Culling2D.h"
+ï»¿#include "../Culling2D.h"
 
 namespace culling2d
 {
@@ -61,14 +61,14 @@ namespace culling2d
 
 			auto cellSize = layer->GetGrids()[0]->GetGridRange().GetSize();
 
-			//•ª‰ð”\0‚Ìê‡‚Íƒ[ƒ‹ƒh‘S•”‚ð’Tõ
+			//åˆ†è§£èƒ½0ã®å ´åˆã¯ãƒ¯ãƒ¼ãƒ«ãƒ‰å…¨éƒ¨ã‚’æŽ¢ç´¢
 			RectF searchRange = (r != 0) ? RectF(cullingRange.X - cellSize.X / 2, cullingRange.Y - cellSize.Y / 2, cullingRange.Width + cellSize.X, cullingRange.Height + cellSize.Y)
 				: layer->GetGrids()[0]->GetGridRange();
 
 			Vector2DI upperLeft;
 			Vector2DI lowerRight;
 
-			//ƒJƒŠƒ“ƒO‘ÎÛ‚ÌƒOƒŠƒbƒh‹æŠÔiž
+			//ã‚«ãƒªãƒ³ã‚°å¯¾è±¡ã®ã‚°ãƒªãƒƒãƒ‰åŒºé–“çµžè¾¼
 			{
 				Vector2DF upperLeftRaw = (searchRange.GetPosition() - worldRange.GetPosition()) / cellSize;
 				Vector2DF lowerRightRaw = (searchRange.GetPosition() + searchRange.GetSize() - worldRange.GetPosition()) / cellSize;
@@ -148,7 +148,7 @@ namespace culling2d
 			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
 			auto diameter = object->GetCircle().Radius * 2;
 
-			//ƒOƒŠƒbƒh‚Ìc‰¡‚ª‚»‚ê‚¼‚ê‰~‚Ì’¼Œa‚ðã‰ñ‚Á‚Ä‚¢‚È‚¢‚©’²‚×‚éB
+			//ã‚°ãƒªãƒƒãƒ‰ã®ç¸¦æ¨ªãŒãã‚Œãžã‚Œå††ã®ç›´å¾„ã‚’ä¸Šå›žã£ã¦ã„ãªã„ã‹èª¿ã¹ã‚‹ã€‚
 			if (range.Height >= diameter && range.Width >= diameter)
 			{
 				belongLayer = layers[currentResolution];
@@ -159,7 +159,7 @@ namespace culling2d
 				break;
 			}
 
-			//ŽŸ‚É‘JˆÚ‚·‚éƒŒƒCƒ„[‚É‚¨‚¯‚éƒOƒŠƒbƒh‚Ì“YŽš‚ð’²‚×‚éB
+			//æ¬¡ã«é·ç§»ã™ã‚‹ãƒ¬ã‚¤ãƒ¤ãƒ¼ã«ãŠã‘ã‚‹ã‚°ãƒªãƒƒãƒ‰ã®æ·»å­—ã‚’èª¿ã¹ã‚‹ã€‚
 			if (currentResolution >= layers.size() - 1)
 			{
 				continue;
