@@ -31,8 +31,13 @@ int main(int argc, char *argv[])
 	// [-1.0, 1.0)の値の範囲で、等確率に実数を生成する
 	std::uniform_real_distribution<float> dist1(0, 1.0);
 
-	int OBJECTNUM = atoi(argv[1]);
-	int TURN = atoi(argv[2]);
+	std::cout << "オブジェクト数を入力してください。" << std::endl;
+	int OBJECTNUM;
+	std::cin >> OBJECTNUM;
+
+	std::cout << "更新回数を入力してください。" << std::endl;
+	int TURN;
+	std::cin >> TURN;
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
