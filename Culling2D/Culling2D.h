@@ -1392,6 +1392,7 @@ namespace culling2d
 		int resolution;
 		int maxResolution;
 		RectF worldRange;
+		int currentID;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;
 		std::set<Object*> improperObjects;
@@ -1431,7 +1432,7 @@ namespace culling2d
 		RectF currentRange;
 		unsigned int id;
 	public:
-		Object(Circle circle, void* userData, World *worldRef, unsigned int id);
+		Object(Circle circle, void* userData, World *worldRef);
 		~Object();
 
 		const Circle& GetCircle() const;

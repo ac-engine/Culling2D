@@ -36,7 +36,8 @@ namespace culling2d
 	World::World(int resolution, RectF worldRange) :
 		resolution(resolution),
 		worldRange(worldRange),
-		maxResolution(resolution)
+		maxResolution(resolution),
+		currentID(0)
 	{
 		initQuadtree();
 		initQuadtreeGrids(resolution, worldRange);
@@ -187,6 +188,7 @@ namespace culling2d
 
 	Grid* World::AddObject(Object* object)
 	{
+		object->SetID(currentID++);
 		auto grid = searchDestinationGrid(object);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
