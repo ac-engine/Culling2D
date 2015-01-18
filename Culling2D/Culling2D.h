@@ -1194,7 +1194,11 @@ namespace culling2d
 		Vector2DF Position;
 		float Radius;
 
-		Circle(){}
+		Circle()
+		{
+			Position = culling2d::Vector2DF(0, 0);
+			Radius = 0;
+		}
 
 		Circle(Vector2DF position, float radius)
 		{
@@ -1432,6 +1436,7 @@ namespace culling2d
 		RectF currentRange;
 		unsigned int id;
 	public:
+		Object(void* userData, World *worldRef);
 		Object(Circle circle, void* userData, World *worldRef);
 		~Object();
 
