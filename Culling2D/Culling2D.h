@@ -1442,7 +1442,7 @@ namespace culling2d
 
 		const Circle& GetCircle() const;
 		void SetCircle(Circle circle);
-		const void* GetUserData() const;
+		void* GetUserData() const;
 		void SetUserData(void* userData);
 
 		RectF GetCurrentRange() const;

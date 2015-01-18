@@ -37,7 +37,7 @@ namespace culling2d
 		}
 	}
 
-	const void* Object::GetUserData() const
+	void* Object::GetUserData() const
 	{
 		return userData;
 	}
