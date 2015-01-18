@@ -197,6 +197,8 @@ namespace culling2d
 
 	bool World::RemoveObject(Object* object)
 	{
+		if (mapObjectToGrid.find(object) == mapObjectToGrid.end()) return false;
+
 		auto grid = mapObjectToGrid.at(object);
 		mapObjectToGrid.erase(object);
 		return grid->RemoveObject(object);
