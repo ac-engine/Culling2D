@@ -2,16 +2,16 @@
 
 namespace culling2d
 {
-	Object::Object(void* userData, World *worldRef):
-		userData(userData)
+	Object::Object(void* userdata, World *worldRef):
+		userData(userdata)
 		,worldRef(worldRef)
 	{
 		SafeAddRef(worldRef);
 		circle = culling2d::Circle(culling2d::Vector2DF(0, 0), 0);
 	}
 
-	Object::Object(Circle c,void* userData, World *worldRef) :
-		  userData(userData)
+	Object::Object(Circle c, void* userdata, World *worldRef) :
+		userData(userdata)
 		, worldRef(worldRef)
 		, circle(c)
 	{

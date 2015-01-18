@@ -1436,8 +1436,8 @@ namespace culling2d
 		RectF currentRange;
 		unsigned int id;
 	public:
-		Object(void* userData, World *worldRef);
-		Object(Circle circle, void* userData, World *worldRef);
+		Object(void* userdata, World *worldRef);
+		Object(Circle circle, void* userdata, World *worldRef);
 		~Object();
 
 		const Circle& GetCircle() const;
