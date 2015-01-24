@@ -37,7 +37,7 @@ namespace culling2d
 		resolution(resolution),
 		worldRange(worldRange),
 		maxResolution(resolution),
-		currentID(0)
+		nextID(0)
 	{
 		initQuadtree();
 		initQuadtreeGrids(resolution, worldRange);
@@ -98,7 +98,15 @@ namespace culling2d
 		}
 		std::sort(tempObjects.begin(), tempObjects.end(), [](Object* obj1, Object* obj2)
 		{
-			return obj1->GetID() > obj2->GetID();
+			//return obj1->GetID() > obj2->GetID();
+			if (obj1->GetStrongID() == obj1->GetStrongID())
+			{
+				return obj1->GetStrongID() > obj2->GetStrongID();
+			}
+			else
+			{
+				return obj1->GetID() > obj2->GetID();
+			}
 		});
 		return tempObjects;
 	}
@@ -188,7 +196,7 @@ namespace culling2d
 
 	Grid* World::AddObject(Object* object)
 	{
-		object->SetID(currentID++);
+		object->SetID(nextID++);
 		auto grid = searchDestinationGrid(object);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
@@ -210,5 +218,9 @@ namespace culling2d
 		{
 			improperObjects.insert(object);
 		}
+	}
+	void World::ResetNextID()
+	{
+		nextID = 0;
 	}
 }

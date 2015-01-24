@@ -1393,10 +1393,11 @@ namespace culling2d
 	class World
 		:public ReferenceObject
 	{
+		friend Object;
 		int resolution;
 		int maxResolution;
 		RectF worldRange;
-		int currentID;
+		int nextID;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;
 		std::set<Object*> improperObjects;
@@ -1406,18 +1407,20 @@ namespace culling2d
 		void initQuadtree();
 
 		Grid* searchDestinationGrid(Object * object);
+		void NotifyMoved(Object *object);
 	public:
 		World(int resolution, RectF worldRange);
 		~World();
 
 		std::vector<Object*> &GetCullingObjects(RectF cullingRange);
-		void NotifyMoved(Object *object);
 		void Update();
 		int GetResolution() const;
 		int RecalculateResolution();
 		RectF GetWorldRange() const;
 		Grid* AddObject(Object* object);
 		bool RemoveObject(Object* object);
+
+		void ResetNextID();
 	};
 }
 
@@ -1429,15 +1432,18 @@ namespace culling2d
 	class Object
 		:public ReferenceObject
 	{
+		friend World;
 		Circle circle;
 		void *userData;
 		World *worldRef;
 
 		RectF currentRange;
-		unsigned int id;
-	public:
+		unsigned long id;
+		int strongID;
 		Object(void* userdata, World *worldRef);
-		Object(Circle circle, void* userdata, World *worldRef);
+
+		void SetID(unsigned long id);
+	public:
 		~Object();
 
 		const Circle& GetCircle() const;
@@ -1450,8 +1456,12 @@ namespace culling2d
 
 		bool IsProperPosition() const;
 
-		void SetID(unsigned int id);
-		unsigned int GetID();
+		unsigned long GetID() const;
+
+		void SetStrongID(int strongID);
+		int GetStrongID() const;
+
+		static Object* Create(void *userdata, World* worldRef);
 	};
 }
 

@@ -41,7 +41,9 @@ int main(int argc, char *argv[])
 
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
-		objects.push_back(new Object(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 10), nullptr, world));
+		auto object = Object::Create(nullptr, world);
+		object->SetCircle(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 10));
+		objects.push_back(object);
 	}
 
 	auto startTime = std::chrono::system_clock::now();

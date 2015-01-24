@@ -5,17 +5,11 @@ namespace culling2d
 	Object::Object(void* userdata, World *worldRef):
 		userData(userdata)
 		,worldRef(worldRef)
+		, strongID(0)
+		, id(0)
 	{
 		SafeAddRef(worldRef);
 		circle = culling2d::Circle(culling2d::Vector2DF(0, 0), 0);
-	}
-
-	Object::Object(Circle c, void* userdata, World *worldRef) :
-		userData(userdata)
-		, worldRef(worldRef)
-		, circle(c)
-	{
-		SafeAddRef(worldRef);
 	}
 
 	Object::~Object()
@@ -66,13 +60,29 @@ namespace culling2d
 			&& currentRange.Height >= radius&&currentRange.Width >= radius;
 	}
 
-	void Object::SetID(unsigned int id)
+	void Object::SetID(unsigned long id)
 	{
 		this->id = id;
 	}
 
-	unsigned int Object::GetID()
+	unsigned long Object::GetID() const
 	{
 		return id;
+	}
+
+	void Object::SetStrongID(int strongID)
+	{
+		this->strongID = strongID;
+	}
+
+	int Object::GetStrongID() const
+	{
+		return strongID;
+	}
+
+
+	Object* Object::Create(void *userdata, World* worldRef)
+	{
+		return new Object(userdata, worldRef);
 	}
 };
