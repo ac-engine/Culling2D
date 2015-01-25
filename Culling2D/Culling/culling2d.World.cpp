@@ -37,7 +37,8 @@ namespace culling2d
 		resolution(resolution),
 		worldRange(worldRange),
 		maxResolution(resolution),
-		nextID(0)
+		nextFirstSortedKey(0),
+		nextSecondSortedKey(0)
 	{
 		initQuadtree();
 		initQuadtreeGrids(resolution, worldRange);
@@ -188,7 +189,6 @@ namespace culling2d
 
 	Grid* World::AddObject(Object* object)
 	{
-		object->SetSecondSortedKey(nextID++);
 		auto grid = searchDestinationGrid(object);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
@@ -212,18 +212,33 @@ namespace culling2d
 		}
 	}
 
-	void World::ResetNextID()
+	void World::ResetNextFirstSortedKey()
 	{
-		nextID = 0;
+		nextFirstSortedKey = 0;
 	}
 
-	void World::IncNextID()
+	void World::IncNextFirstSortedKey()
 	{
-		++nextID;
+		++nextFirstSortedKey;
 	}
 
-	uint32_t World::GetNextID() const
+	uint32_t World::GetNextFirstSortedKey() const
 	{
-		return nextID;
+		return nextFirstSortedKey;
+	}
+
+	void World::ResetNextSecondSortedKey()
+	{
+		nextSecondSortedKey = 0;
+	}
+
+	void World::IncNextSecondSortedKey()
+	{
+		++nextSecondSortedKey;
+	}
+
+	uint32_t World::GetNextSecondSortedKey() const
+	{
+		return nextSecondSortedKey;
 	}
 }

@@ -1397,7 +1397,8 @@ namespace culling2d
 		int resolution;
 		int maxResolution;
 		RectF worldRange;
-		uint32_t nextID;
+		uint32_t nextFirstSortedKey;
+		uint32_t nextSecondSortedKey;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;
 		std::set<Object*> improperObjects;
@@ -1420,9 +1421,13 @@ namespace culling2d
 		Grid* AddObject(Object* object);
 		bool RemoveObject(Object* object);
 
-		void ResetNextID();
-		void IncNextID();
-		uint32_t GetNextID() const;
+		void ResetNextFirstSortedKey();
+		void IncNextFirstSortedKey();
+		uint32_t GetNextFirstSortedKey() const;
+
+		void ResetNextSecondSortedKey();
+		void IncNextSecondSortedKey();
+		uint32_t GetNextSecondSortedKey() const;
 	};
 }
 
