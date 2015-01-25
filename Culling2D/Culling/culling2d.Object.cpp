@@ -5,7 +5,6 @@ namespace culling2d
 	Object::Object(void* userdata, World *worldRef):
 		userData(userdata)
 		,worldRef(worldRef)
-		, strongID(0)
 		, id(0)
 	{
 		SafeAddRef(worldRef);
@@ -68,16 +67,6 @@ namespace culling2d
 	unsigned long Object::GetID() const
 	{
 		return id;
-	}
-
-	void Object::SetStrongID(int strongID)
-	{
-		this->strongID = strongID;
-	}
-
-	int Object::GetStrongID() const
-	{
-		return strongID;
 	}
 
 

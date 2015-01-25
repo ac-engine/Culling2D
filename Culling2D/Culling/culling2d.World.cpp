@@ -98,14 +98,7 @@ namespace culling2d
 		}
 		std::sort(tempObjects.begin(), tempObjects.end(), [](Object* obj1, Object* obj2)
 		{
-			if (obj1->GetStrongID() > obj1->GetStrongID())
-			{
-				return true;
-			}
-			else
-			{
-				return obj1->GetID() > obj2->GetID();
-			}
+			return obj1->GetID() > obj2->GetID();
 		});
 		return tempObjects;
 	}

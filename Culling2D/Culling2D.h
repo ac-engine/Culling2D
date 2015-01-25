@@ -1439,7 +1439,6 @@ namespace culling2d
 
 		RectF currentRange;
 		unsigned long id;
-		int strongID;
 		Object(void* userdata, World *worldRef);
 
 		void SetID(unsigned long id);
@@ -1457,9 +1456,6 @@ namespace culling2d
 		bool IsProperPosition() const;
 
 		unsigned long GetID() const;
-
-		void SetStrongID(int strongID);
-		int GetStrongID() const;
 
 		static Object* Create(void *userdata, World* worldRef);
 	};
