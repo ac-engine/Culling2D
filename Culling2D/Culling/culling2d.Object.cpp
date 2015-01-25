@@ -5,7 +5,7 @@ namespace culling2d
 	Object::Object(void* userdata, World *worldRef):
 		userData(userdata)
 		,worldRef(worldRef)
-		, id(0)
+		, sortedKey(0)
 	{
 		SafeAddRef(worldRef);
 		circle = culling2d::Circle(culling2d::Vector2DF(0, 0), 0);
@@ -58,15 +58,34 @@ namespace culling2d
 		return currentRange.X <= position.X&&currentRange.Y <= position.Y&&currentRange.X + currentRange.Width >= position.X&&currentRange.Y + currentRange.Height >= position.Y
 			&& currentRange.Height >= radius&&currentRange.Width >= radius;
 	}
-
-	void Object::SetID(unsigned long id)
+	
+	void Object::SetSecondSortedKey(uint32_t secondKey)
 	{
-		this->id = id;
+		uint64_t conv = secondKey;
+		sortedKey |= conv;
 	}
 
-	unsigned long Object::GetID() const
+	uint32_t Object::GetSecondSortedKey()
 	{
-		return id;
+		uint64_t mask = 0x00000000ffffffff;
+		uint64_t conv = sortedKey & mask;
+
+		return (uint32_t)conv;
+	}
+
+	void Object::SetFirstSortedKey(uint32_t firstKey)
+	{
+		uint64_t conv = firstKey;
+		conv << 32;
+		sortedKey |= conv;
+	}
+
+	uint32_t Object::GetFirstSortedKey()
+	{
+		uint64_t mask = 0xffffffff00000000;
+		uint64_t conv = sortedKey & mask;
+
+		return (uint32_t)(conv >> 32);
 	}
 
 
@@ -74,4 +93,10 @@ namespace culling2d
 	{
 		return new Object(userdata, worldRef);
 	}
+
+	uint64_t Object::GetSortedKey() const
+	{
+		return sortedKey;
+	}
+
 };

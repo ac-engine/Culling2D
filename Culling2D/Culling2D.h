@@ -1421,6 +1421,7 @@ namespace culling2d
 		bool RemoveObject(Object* object);
 
 		void ResetNextID();
+		void IncNextID();
 	};
 }
 
@@ -1438,10 +1439,12 @@ namespace culling2d
 		World *worldRef;
 
 		RectF currentRange;
-		unsigned long id;
+		uint64_t sortedKey;
 		Object(void* userdata, World *worldRef);
 
-		void SetID(unsigned long id);
+		void SetSecondSortedKey(uint32_t secondKey);
+
+		uint64_t GetSortedKey() const;
 	public:
 		~Object();
 
@@ -1455,7 +1458,10 @@ namespace culling2d
 
 		bool IsProperPosition() const;
 
-		unsigned long GetID() const;
+		uint32_t GetSecondSortedKey();
+
+		void SetFirstSortedKey(uint32_t firstKey);
+		uint32_t GetFirstSortedKey();
 
 		static Object* Create(void *userdata, World* worldRef);
 	};

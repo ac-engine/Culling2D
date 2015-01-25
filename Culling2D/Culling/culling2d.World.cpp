@@ -98,7 +98,7 @@ namespace culling2d
 		}
 		std::sort(tempObjects.begin(), tempObjects.end(), [](Object* obj1, Object* obj2)
 		{
-			return obj1->GetID() > obj2->GetID();
+			return obj1->GetSortedKey() > obj2->GetSortedKey();
 		});
 		return tempObjects;
 	}
@@ -188,7 +188,7 @@ namespace culling2d
 
 	Grid* World::AddObject(Object* object)
 	{
-		object->SetID(nextID++);
+		object->SetSecondSortedKey(nextID++);
 		auto grid = searchDestinationGrid(object);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
@@ -211,8 +211,14 @@ namespace culling2d
 			improperObjects.insert(object);
 		}
 	}
+
 	void World::ResetNextID()
 	{
 		nextID = 0;
+	}
+
+	void World::IncNextID()
+	{
+		++nextID;
 	}
 }
