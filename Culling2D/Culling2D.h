@@ -1442,8 +1442,6 @@ namespace culling2d
 		uint64_t sortedKey;
 		Object(void* userdata, World *worldRef);
 
-		void SetSecondSortedKey(uint32_t secondKey);
-
 		uint64_t GetSortedKey() const;
 	public:
 		~Object();
@@ -1459,6 +1457,7 @@ namespace culling2d
 		bool IsProperPosition() const;
 
 		uint32_t GetSecondSortedKey();
+		void SetSecondSortedKey(uint32_t secondKey);
 
 		void SetFirstSortedKey(uint32_t firstKey);
 		uint32_t GetFirstSortedKey();
