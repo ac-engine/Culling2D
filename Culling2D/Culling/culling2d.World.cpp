@@ -221,4 +221,9 @@ namespace culling2d
 	{
 		++nextID;
 	}
+
+	uint32_t World::GetNextID() const
+	{
+		return nextID;
+	}
 }

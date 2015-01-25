@@ -1397,7 +1397,7 @@ namespace culling2d
 		int resolution;
 		int maxResolution;
 		RectF worldRange;
-		int nextID;
+		uint32_t nextID;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;
 		std::set<Object*> improperObjects;
@@ -1422,6 +1422,7 @@ namespace culling2d
 
 		void ResetNextID();
 		void IncNextID();
+		uint32_t GetNextID() const;
 	};
 }
 
