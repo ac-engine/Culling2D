@@ -76,7 +76,7 @@ namespace culling2d
 	void Object::SetFirstSortedKey(uint32_t firstKey)
 	{
 		uint64_t conv = firstKey;
-		conv << 32;
+		conv <<= 32;
 		sortedKey |= conv;
 	}
 
