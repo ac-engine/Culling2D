@@ -64,7 +64,7 @@ namespace culling2d
 			auto cellSize = layer->GetGrids()[0]->GetGridRange().GetSize();
 
 			//分解能0の場合はワールド全部を探索
-			RectF searchRange = (r != 0) ? RectF(cullingRange.X - cellSize.X / 2, cullingRange.Y - cellSize.Y / 2, cullingRange.Width + cellSize.X / 2, cullingRange.Height + cellSize.Y / 2)
+			RectF searchRange = (r != 0) ? RectF(cullingRange.X - cellSize.X / 2, cullingRange.Y - cellSize.Y / 2, cullingRange.Width + cellSize.X, cullingRange.Height + cellSize.Y)
 				: layer->GetGrids()[0]->GetGridRange();
 
 			Vector2DI upperLeft;
@@ -81,8 +81,8 @@ namespace culling2d
 				lowerRightRaw.X = Min(worldRange.GetSize().X / cellSize.X - 1, lowerRightRaw.X);
 				lowerRightRaw.Y = Min(worldRange.GetSize().Y / cellSize.Y - 1, lowerRightRaw.Y);
 
-				upperLeft = Vector2DI((int)floor(upperLeftRaw.X), (int)(floor)(upperLeftRaw.Y));
-				lowerRight = Vector2DI((int)floor(lowerRightRaw.X), (int)(floor)(lowerRightRaw.Y));
+				upperLeft = Vector2DI((int)floor(upperLeftRaw.X), (int)floor(upperLeftRaw.Y));
+				lowerRight = Vector2DI((int)floor(lowerRightRaw.X), (int)floor(lowerRightRaw.Y));
 			}
 
 			int xSize = 1 << r;
