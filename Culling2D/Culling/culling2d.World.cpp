@@ -93,7 +93,7 @@ namespace culling2d
 				{
 					auto grid = layer->GetGrids()[y*xSize + x];
 
-					grid->GetCullingObjects(searchRange, tempObjects);
+					grid->GetCullingObjects(cullingRange, tempObjects);
 				}
 			}
 		}
