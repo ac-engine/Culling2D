@@ -1395,6 +1395,7 @@ namespace culling2d
 	{
 		friend Object;
 		int resolution;
+		uint32_t outOfRangeObjectsCount;
 		RectF worldRange;
 		uint32_t nextFirstSortedKey;
 		uint32_t nextSecondSortedKey;
@@ -1405,8 +1406,9 @@ namespace culling2d
 
 		void initQuadtreeGrids(int layerResolution, RectF range);
 		void initQuadtree();
+		Grid* AddObjectInternal(Object* object);
 
-		Grid* searchDestinationGrid(Object * object);
+		Grid* searchDestinationGrid(Object * object, bool isInternal);
 		void NotifyMoved(Object *object);
 	public:
 		World(int resolution, RectF worldRange);
@@ -1442,6 +1444,7 @@ namespace culling2d
 		Circle circle;
 		void *userData;
 		World *worldRef;
+		bool isInWorld;
 
 		RectF currentRange;
 		uint64_t sortedKey;
@@ -1450,6 +1453,9 @@ namespace culling2d
 		uint64_t GetSortedKey() const;
 	public:
 		~Object();
+
+		bool GetIsInWorld() const;
+		void SetIsInWorld(bool isinworld);
 
 		const Circle& GetCircle() const;
 		void SetCircle(Circle circle);

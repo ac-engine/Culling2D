@@ -2,13 +2,24 @@
 
 namespace culling2d
 {
-	Object::Object(void* userdata, World *worldRef):
+	Object::Object(void* userdata, World *worldRef) :
 		userData(userdata)
-		,worldRef(worldRef)
+		, worldRef(worldRef)
 		, sortedKey(0)
+		, isInWorld(true)
 	{
 		SafeAddRef(worldRef);
 		circle = culling2d::Circle(culling2d::Vector2DF(0, 0), 0);
+	}
+
+	bool Object::GetIsInWorld() const
+	{
+		return isInWorld;
+	}
+
+	void Object::SetIsInWorld(bool isinworld)
+	{
+		isInWorld = isinworld;
 	}
 
 	Object::~Object()

@@ -37,7 +37,8 @@ namespace culling2d
 		resolution(resolution),
 		worldRange(worldRange),
 		nextFirstSortedKey(0),
-		nextSecondSortedKey(0)
+		nextSecondSortedKey(0),
+		outOfRangeObjectsCount(0)
 	{
 		initQuadtree();
 		//initQuadtreeGrids(resolution, worldRange);
@@ -109,7 +110,7 @@ namespace culling2d
 		{
 			auto grid = mapObjectToGrid[improperObject];
 			grid->RemoveObject(improperObject);
-			auto newGrid = AddObject(improperObject);
+			auto newGrid = AddObjectInternal(improperObject);
 			assert(newGrid != nullptr);
 			mapObjectToGrid[improperObject] = newGrid;
 		}
@@ -124,6 +125,7 @@ namespace culling2d
 
 	void World::ResetWorld(int newResolution,RectF newRange)
 	{
+		outOfRangeObjectsCount = 0;
 		std::vector<Object*> objects;
 		for (auto& obj : mapObjectToGrid)
 		{
@@ -147,7 +149,7 @@ namespace culling2d
 		return worldRange;
 	}
 
-	Grid* World::searchDestinationGrid(Object * object)
+	Grid* World::searchDestinationGrid(Object * object, bool isInternal)
 	{
 		Layer* belongLayer = nullptr;
 		int nextIndex = 0;
@@ -190,20 +192,53 @@ namespace culling2d
 
 		}
 
-
 		if (belongLayer == nullptr)
 		{
+			if (isInternal)
+			{
+				if (!object->GetIsInWorld())
+				{
+					--outOfRangeObjectsCount;
+				}
+			}
+			else
+			{
+				if (object->GetIsInWorld())
+				{
+					++outOfRangeObjectsCount;
+				}
+			}
+			object->SetIsInWorld(false);
+
 			return layers[0]->GetGrids()[0];
 		}
 		else
 		{
+			if (isInternal)
+			{
+				if (!object->GetIsInWorld())
+				{
+					--outOfRangeObjectsCount;
+				}
+			}
+
+			object->SetIsInWorld(true);
+
 			return belongLayer->GetGrids()[belongIndex];
 		}
 	}
 
 	Grid* World::AddObject(Object* object)
 	{
-		auto grid = searchDestinationGrid(object);
+		auto grid = searchDestinationGrid(object,false);
+		object->SetCurrentRange(grid->GetGridRange());
+		mapObjectToGrid[object] = grid;
+		return (grid->AddObject(object)) ? grid : nullptr;
+	}
+
+	Grid* World::AddObjectInternal(Object* object)
+	{
+		auto grid = searchDestinationGrid(object, true);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
 		return (grid->AddObject(object)) ? grid : nullptr;
