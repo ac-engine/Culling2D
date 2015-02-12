@@ -80,10 +80,12 @@ int main(int argc, char *argv[])
 
 		world->Update();
 
+		
 		if (j == TURN / 2)
 		{
 			world->ResetWorld(6, RectF(-150, -150, 300, 300));
 		}
+
 	}
 
 	endTime = std::chrono::system_clock::now();

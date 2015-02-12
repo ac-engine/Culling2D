@@ -7,7 +7,7 @@ namespace culling2d
 		for (int i = 0; i <= resolution; ++i)
 		{
 			auto layer = new Layer(i);
-			SafeAddRef(layer);
+			//SafeAddRef(layer);
 			layers.push_back(layer);
 			initQuadtreeGrids(i, worldRange);
 		}
@@ -142,6 +142,11 @@ namespace culling2d
 		worldRange = newRange;
 
 		initQuadtree();
+
+		for (auto obj : objects)
+		{
+			AddObjectInternal(obj);
+		}
 	}
 
 	RectF World::GetWorldRange() const
