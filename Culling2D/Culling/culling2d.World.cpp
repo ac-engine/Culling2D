@@ -99,7 +99,7 @@ namespace culling2d
 		}
 		std::sort(tempObjects.begin(), tempObjects.end(), [](Object* obj1, Object* obj2)
 		{
-			return obj1->GetSortedKey() > obj2->GetSortedKey();
+			return obj1->GetSortedKey() < obj2->GetSortedKey();
 		});
 		return tempObjects;
 	}
