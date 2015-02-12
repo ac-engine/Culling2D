@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < OBJECTNUM; ++i)
 	{
 		auto object = Object::Create(nullptr, world);
-		object->SetCircle(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 10));
+		object->SetCircle(Circle(Vector2DF(-90 + 180 * dist1(engine), -90 + 180 * dist1(engine)), 5));
 		objects.push_back(object);
 	}
 
@@ -79,6 +79,11 @@ int main(int argc, char *argv[])
 		}
 
 		world->Update();
+
+		if (j == TURN / 2)
+		{
+			world->ResetWorld(6, RectF(-150, -150, 300, 300));
+		}
 	}
 
 	endTime = std::chrono::system_clock::now();
@@ -107,4 +112,6 @@ int main(int argc, char *argv[])
 	timeSpan = endTime - startTime;
 
 	std::cout << "削除処理時間:" << std::chrono::duration_cast<std::chrono::milliseconds>(timeSpan).count() << "[ms]" << std::endl;
+
+	system("pause");
 }

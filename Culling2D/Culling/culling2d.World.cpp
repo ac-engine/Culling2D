@@ -36,12 +36,11 @@ namespace culling2d
 	World::World(int resolution, RectF worldRange) :
 		resolution(resolution),
 		worldRange(worldRange),
-		maxResolution(resolution),
 		nextFirstSortedKey(0),
 		nextSecondSortedKey(0)
 	{
 		initQuadtree();
-		initQuadtreeGrids(resolution, worldRange);
+		//initQuadtreeGrids(resolution, worldRange);
 	}
 
 	World::~World()
@@ -123,9 +122,24 @@ namespace culling2d
 		return resolution;
 	}
 
-	int World::RecalculateResolution()
+	void World::ResetWorld(int newResolution,RectF newRange)
 	{
-		return resolution;
+		std::vector<Object*> objects;
+		for (auto& obj : mapObjectToGrid)
+		{
+			objects.push_back(obj.first);
+		}
+
+		for (int i = 0; i < layers.size(); ++i)
+		{
+			SafeRelease(layers[i]);
+		}
+		layers.clear();
+
+		resolution = newResolution;
+		worldRange = newRange;
+
+		initQuadtree();
 	}
 
 	RectF World::GetWorldRange() const

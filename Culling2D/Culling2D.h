@@ -1395,7 +1395,6 @@ namespace culling2d
 	{
 		friend Object;
 		int resolution;
-		int maxResolution;
 		RectF worldRange;
 		uint32_t nextFirstSortedKey;
 		uint32_t nextSecondSortedKey;
@@ -1416,7 +1415,7 @@ namespace culling2d
 		std::vector<Object*> &GetCullingObjects(RectF cullingRange);
 		void Update();
 		int GetResolution() const;
-		int RecalculateResolution();
+		void ResetWorld(int newResolution, RectF newRange);
 		RectF GetWorldRange() const;
 		Grid* AddObject(Object* object);
 		bool RemoveObject(Object* object);
