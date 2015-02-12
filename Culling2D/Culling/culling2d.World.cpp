@@ -123,7 +123,7 @@ namespace culling2d
 		return resolution;
 	}
 
-	void World::ResetWorld(int newResolution,RectF newRange)
+	void World::ResetWorld(int newResolution, RectF newRange)
 	{
 		outOfRangeObjectsCount = 0;
 		std::vector<Object*> objects;
@@ -199,32 +199,20 @@ namespace culling2d
 
 		if (belongLayer == nullptr)
 		{
-			if (isInternal)
+			if (object->GetIsInWorld())
 			{
-				if (!object->GetIsInWorld())
-				{
-					--outOfRangeObjectsCount;
-				}
+				++outOfRangeObjectsCount;
 			}
-			else
-			{
-				if (object->GetIsInWorld())
-				{
-					++outOfRangeObjectsCount;
-				}
-			}
+
 			object->SetIsInWorld(false);
 
 			return layers[0]->GetGrids()[0];
 		}
 		else
 		{
-			if (isInternal)
+			if (!object->GetIsInWorld())
 			{
-				if (!object->GetIsInWorld())
-				{
-					--outOfRangeObjectsCount;
-				}
+				--outOfRangeObjectsCount;
 			}
 
 			object->SetIsInWorld(true);
@@ -235,7 +223,7 @@ namespace culling2d
 
 	Grid* World::AddObject(Object* object)
 	{
-		auto grid = searchDestinationGrid(object,false);
+		auto grid = searchDestinationGrid(object, false);
 		object->SetCurrentRange(grid->GetGridRange());
 		mapObjectToGrid[object] = grid;
 		return (grid->AddObject(object)) ? grid : nullptr;
