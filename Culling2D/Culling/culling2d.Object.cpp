@@ -64,12 +64,12 @@ namespace culling2d
 	bool Object::IsProperPosition() const
 	{
 		auto position = circle.Position;
-		auto radius = circle.Radius;
+		auto diameter = circle.Radius * 2;
 
 		return currentRange.X <= position.X&&currentRange.Y <= position.Y&&currentRange.X + currentRange.Width >= position.X&&currentRange.Y + currentRange.Height >= position.Y
-			&& currentRange.Height >= radius&&currentRange.Width >= radius;
+			&& currentRange.Height >= diameter&&currentRange.Width / 2 >= diameter;
 	}
-	
+
 	void Object::SetSecondSortedKey(uint32_t secondKey)
 	{
 		uint64_t conv = secondKey;
