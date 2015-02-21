@@ -116,6 +116,10 @@ namespace culling2d
 		return t;
 	}
 
+	inline double logn(int base, double antilog) {
+		return log(antilog) / log((double)base);
+	}
+
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
@@ -1410,6 +1414,10 @@ namespace culling2d
 
 		Grid* searchDestinationGrid(Object * object, bool isInternal);
 		void NotifyMoved(Object *object);
+
+		Vector2DF upperLeft_;
+		Vector2DF lowerRight_;
+		float minRadius_;
 	public:
 		World(int resolution, RectF worldRange);
 		~World();

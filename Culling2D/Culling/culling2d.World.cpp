@@ -2,6 +2,9 @@
 
 namespace culling2d
 {
+	const int CHANGE_OBJECT_NUM = 100;
+	const float MIN_OBJECT_RADIUS = 5;
+
 	void World::initQuadtree()
 	{
 		for (int i = 0; i <= resolution; ++i)
@@ -38,7 +41,10 @@ namespace culling2d
 		worldRange(worldRange),
 		nextFirstSortedKey(0),
 		nextSecondSortedKey(0),
-		outOfRangeObjectsCount(0)
+		outOfRangeObjectsCount(0),
+		upperLeft_(Vector2DF(0,0)),
+		lowerRight_(Vector2DF(0,0)),
+		minRadius_(FLT_MAX)
 	{
 		initQuadtree();
 		//initQuadtreeGrids(resolution, worldRange);
@@ -116,6 +122,19 @@ namespace culling2d
 		}
 
 		improperObjects.clear();
+
+		if (outOfRangeObjectsCount >= CHANGE_OBJECT_NUM)
+		{
+			Vector2DF center = (upperLeft_ + lowerRight_) / 2;
+			float diam = Max(lowerRight_.X - upperLeft_.X, lowerRight_.Y - upperLeft_.Y);
+			Vector2DF upper = center - Vector2DF(diam, diam) / 2;
+
+			auto obj_diam = Max(minRadius_ * 2, MIN_OBJECT_RADIUS);
+
+			int res = (int)floor(logn(4, (diam / obj_diam)));
+
+			ResetWorld(res, RectF(upper.X, upper.Y, diam, diam));
+		}
 	}
 
 	int World::GetResolution() const
@@ -160,10 +179,11 @@ namespace culling2d
 		int nextIndex = 0;
 		int belongIndex = 0;
 
+		auto diameter = object->GetCircle().Radius * 2;
+
 		for (int currentResolution = 0; currentResolution <= resolution; ++currentResolution)
 		{
 			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
-			auto diameter = object->GetCircle().Radius * 2;
 
 			//グリッドの縦横がそれぞれ円の直径を上回っていないか調べる。
 			if (range.Height >= diameter && range.Width >= diameter)
@@ -195,6 +215,15 @@ namespace culling2d
 				}
 			}
 
+		}
+
+		{
+			auto circle = object->GetCircle();
+			upperLeft_.X = Min(upperLeft_.X, circle.Position.X);
+			upperLeft_.Y = Min(upperLeft_.Y, circle.Position.Y);
+			lowerRight_.X = Max(lowerRight_.X, circle.Position.X);
+			lowerRight_.Y = Max(lowerRight_.Y, circle.Position.Y);
+			minRadius_ = Min(minRadius_, circle.Radius);
 		}
 
 		if (belongLayer == nullptr)
