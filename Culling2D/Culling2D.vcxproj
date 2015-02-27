@@ -12,14 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Common\culling2d.common.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Matrix33.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Matrix44.cpp" />
     <ClCompile Include="Common\Math\culling2d.RectF.cpp" />
     <ClCompile Include="Common\Math\culling2d.RectI.cpp" />
     <ClCompile Include="Common\Math\culling2d.Vector2DF.cpp" />
     <ClCompile Include="Common\Math\culling2d.Vector2DI.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Vector3DF.cpp" />
-    <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp" />
     <ClCompile Include="culling2d.ReferenceObject.cpp" />
     <ClCompile Include="Culling\culling2d.Grid.cpp" />
     <ClCompile Include="Culling\culling2d.Layer.cpp" />

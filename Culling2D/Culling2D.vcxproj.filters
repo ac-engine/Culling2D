@@ -12,12 +12,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Common\Math\culling2d.Matrix33.cpp">
-      <Filter>Common\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Math\culling2d.Matrix44.cpp">
-      <Filter>Common\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Common\Math\culling2d.RectF.cpp">
       <Filter>Common\Math</Filter>
     </ClCompile>
@@ -28,12 +22,6 @@
       <Filter>Common\Math</Filter>
     </ClCompile>
     <ClCompile Include="Common\Math\culling2d.Vector2DI.cpp">
-      <Filter>Common\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Math\culling2d.Vector3DF.cpp">
-      <Filter>Common\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Math\culling2d.Vector4DF.cpp">
       <Filter>Common\Math</Filter>
     </ClCompile>
     <ClCompile Include="Culling\culling2d.Layer.cpp">
