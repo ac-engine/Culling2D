@@ -131,7 +131,7 @@ namespace culling2d
 
 			auto obj_diam = Max(minRadius_ * 2, MIN_OBJECT_RADIUS);
 
-			int res = (int)floor(logn(4, (diam / obj_diam)));
+			int res = (int)floor(log2((diam / obj_diam)));
 
 			ResetWorld(res, RectF(upper.X, upper.Y, diam, diam));
 		}
