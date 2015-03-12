@@ -4,6 +4,7 @@ namespace culling2d
 {
 	const int CHANGE_OBJECT_NUM = 100;
 	const float MIN_OBJECT_DIAMETER = 10;
+	const float ALLOWANCE = 50;
 
 	void World::initQuadtree()
 	{
@@ -123,14 +124,10 @@ namespace culling2d
 
 		improperObjects.clear();
 
-#ifdef _DEBUG
-		printf("%d\n", outOfRangeObjectsCount);
-#endif
-
 		if (outOfRangeObjectsCount >= CHANGE_OBJECT_NUM)
 		{
 			Vector2DF center = (upperLeft_ + lowerRight_) / 2;
-			float diam = Max(lowerRight_.X - upperLeft_.X, lowerRight_.Y - upperLeft_.Y);
+			float diam = Max(lowerRight_.X - upperLeft_.X, lowerRight_.Y - upperLeft_.Y) + ALLOWANCE * 2;
 			Vector2DF upper = center - Vector2DF(diam, diam) / 2;
 
 			auto obj_diam = Max(minRadius_ * 2, MIN_OBJECT_DIAMETER);
