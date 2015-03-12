@@ -67,7 +67,7 @@ namespace culling2d
 		auto position = circle.Position;
 		auto diameter = circle.Radius * 2;
 
-		return currentRange.X <= position.X&&currentRange.Y <= position.Y&&currentRange.X + currentRange.Width >= position.X&&currentRange.Y + currentRange.Height >= position.Y
+		return currentRange.GetIsContainingPoint(position)
 			&& currentRange.Height >= diameter&&currentRange.Width >= diameter;
 	}
 

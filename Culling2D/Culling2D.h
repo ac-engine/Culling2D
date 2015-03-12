@@ -846,7 +846,7 @@ namespace culling2d {
 		*/
 		bool GetCollision(Circle circle);
 
-		bool GetIsContainingPoint(Vector2DF point);
+		bool GetIsContainingPoint(Vector2DF point) const;
 	};
 
 	//----------------------------------------------------------------------------------

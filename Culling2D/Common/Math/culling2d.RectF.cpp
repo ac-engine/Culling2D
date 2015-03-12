@@ -46,7 +46,7 @@ namespace culling2d
 		return (distanceSquared < (circle.Radius*circle.Radius));
 	}
 
-	bool RectF::GetIsContainingPoint(Vector2DF point)
+	bool RectF::GetIsContainingPoint(Vector2DF point) const
 	{
 		return X <= point.X&&Y <= point.Y&&X + Width >= point.X&&Y + Height >= point.Y;
 	}
