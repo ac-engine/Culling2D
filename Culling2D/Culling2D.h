@@ -30,42 +30,6 @@
 #include <unistd.h>
 #endif
 
-//----------------------------------------------------------------------------------
-//
-//----------------------------------------------------------------------------------
-/**
-文字コード
-MSVC		sizeof(wchar_t)==2
-gcc(cygwin)	sizeof(wchar_t)==2
-gcc(linux)	sizeof(wchar_t)==4
-*/
-namespace culling2d
-{
-#ifdef _WIN32
-	typedef wchar_t achar;
-	typedef std::wstring astring;
-#else 
-	typedef uint16_t achar;
-	typedef std::basic_string<uint16_t> astring;
-#endif
-};
-
-//----------------------------------------------------------------------------------
-//
-//----------------------------------------------------------------------------------
-
-# if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#   define CULLING2D_STDCALL __stdcall
-# else
-#   define CULLING2D_STDCALL
-# endif 
-
-# if defined(_WIN32) || defined(__WIN32__) || defined(__CYGWIN__)
-#   define CULLING2D_DLLEXPORT __declspec(dllexport)
-# else
-#   define CULLING2D_DLLEXPORT
-# endif 
-
 namespace culling2d
 {
 	//----------------------------------------------------------------------------------
@@ -139,50 +103,6 @@ namespace culling2d
 		s = x * (1.0f - x2 / 6.0f + x4 / 120.0f - x6 / 5040.0f + x8 / 362880.0f - x10 / 39916800.0f);
 		c = 1.0f - x2 / 2.0f + x4 / 24.0f - x6 / 720.0f + x8 / 40320.0f - x10 / 3628800.0f;
 	}
-
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
-
-	/**
-	@brief	文字コードを変換する。(UTF16 -> UTF8)
-	@param	dst	[out]	出力配列の先頭ポインタ
-	@param	dst_size	[in]	出力配列の長さ
-	@param	src			[in]	入力配列の先頭ポインタ
-	@return	文字数
-	*/
-	int32_t Utf16ToUtf8(int8_t* dst, int32_t dst_size, const int16_t* src);
-
-	/**
-	@brief	文字コードを変換する。(UTF8 -> UTF16)
-	@param	dst			[out]	出力配列の先頭ポインタ
-	@param	dst_size	[in]	出力配列の長さ
-	@param	src			[in]	入力配列の先頭ポインタ
-	@return	文字数
-	*/
-	int32_t Utf8ToUtf16(int16_t* dst, int32_t dst_size, const int8_t* src);
-
-	std::wstring ToWide(const char* pText);
-
-	astring ToAString(const wchar_t* src);
-
-	astring ToAString(const char* src);
-
-	std::string ToUtf8String(const achar* src);
-
-	astring ReplaceAll(const astring text, const achar* from, const achar* to);
-
-	astring CombinePath(const achar* rootPath, const achar* path);
-
-#if !_WIN32 && !SWIG
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
-	static astring ReplaceAll(const astring text, const wchar_t* from, const wchar_t* to)
-	{
-		return ReplaceAll(text, ToAString(from).c_str(), ToAString(to).c_str());
-	}
-#endif
 
 	//----------------------------------------------------------------------------------
 	//
@@ -287,30 +207,6 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	static std::vector<int8_t> GetBinaryData(astring filePath)
-	{
-		FILE* fp = nullptr;
-
-#if _WIN32
-		_wfopen_s(&fp, filePath.c_str(), L"rb");
-		if (fp == nullptr) return std::vector<int8_t>();
-#else
-		fp = fopen(ToUtf8String(filePath.c_str()).c_str(), "rb");
-		if (fp == nullptr) return std::vector<int8_t>();
-#endif
-
-		fseek(fp, 0, SEEK_END);
-		auto size = ftell(fp);
-		fseek(fp, 0, SEEK_SET);
-
-		std::vector<int8_t> data;
-		data.resize(size);
-
-		fread(&(data[0]), 1, size, fp);
-		fclose(fp);
-
-		return data;
-	}
 }
 
 #include <memory>
@@ -343,11 +239,6 @@ namespace culling2d {
 		virtual int Release();
 	};
 };
-
-
-//----------------------------------------------------------------------------------
-//
-//----------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------
 //
@@ -519,10 +410,6 @@ namespace culling2d
 			return sqrt(dx * dx + dy * dy);
 		}
 	};
-
-	//----------------------------------------------------------------------------------
-	//
-	//----------------------------------------------------------------------------------
 }
 //----------------------------------------------------------------------------------
 //

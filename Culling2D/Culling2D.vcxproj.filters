@@ -36,9 +36,6 @@
     <ClCompile Include="Culling\culling2d.World.cpp">
       <Filter>Culling</Filter>
     </ClCompile>
-    <ClCompile Include="Common\culling2d.common.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="culling2d.ReferenceObject.cpp" />
   </ItemGroup>
   <ItemGroup>

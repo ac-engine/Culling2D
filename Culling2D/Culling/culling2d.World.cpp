@@ -82,11 +82,11 @@ namespace culling2d
 				Vector2DF upperLeftRaw = (searchRange.GetPosition() - worldRange.GetPosition()) / cellSize;
 				Vector2DF lowerRightRaw = (searchRange.GetPosition() + searchRange.GetSize() - worldRange.GetPosition()) / cellSize;
 
-				upperLeftRaw.X = Max(0, upperLeftRaw.X);
-				upperLeftRaw.Y = Max(0, upperLeftRaw.Y);
+				upperLeftRaw.X = Max(0.0f, upperLeftRaw.X);
+				upperLeftRaw.Y = Max(0.0f, upperLeftRaw.Y);
 
-				lowerRightRaw.X = Min(worldRange.GetSize().X / cellSize.X - 1, lowerRightRaw.X);
-				lowerRightRaw.Y = Min(worldRange.GetSize().Y / cellSize.Y - 1, lowerRightRaw.Y);
+				lowerRightRaw.X = Min(worldRange.GetSize().X / cellSize.X - 1.0f, lowerRightRaw.X);
+				lowerRightRaw.Y = Min(worldRange.GetSize().Y / cellSize.Y - 1.0f, lowerRightRaw.Y);
 
 				upperLeft = Vector2DI((int)floor(upperLeftRaw.X), (int)floor(upperLeftRaw.Y));
 				lowerRight = Vector2DI((int)floor(lowerRightRaw.X), (int)floor(lowerRightRaw.Y));
