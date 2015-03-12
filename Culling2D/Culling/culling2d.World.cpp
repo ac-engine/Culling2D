@@ -123,6 +123,10 @@ namespace culling2d
 
 		improperObjects.clear();
 
+#ifdef _DEBUG
+		printf("%d\n", outOfRangeObjectsCount);
+#endif
+
 		if (outOfRangeObjectsCount >= CHANGE_OBJECT_NUM)
 		{
 			Vector2DF center = (upperLeft_ + lowerRight_) / 2;
@@ -179,14 +183,16 @@ namespace culling2d
 		int nextIndex = 0;
 		int belongIndex = 0;
 
+		auto position = object->GetCircle().Position;
 		auto diameter = object->GetCircle().Radius * 2;
 
 		for (int currentResolution = 0; currentResolution <= resolution; ++currentResolution)
 		{
+
 			auto range = layers[currentResolution]->GetGrids()[nextIndex]->GetGridRange();
 
 			//グリッドの縦横がそれぞれ円の直径を上回っていないか調べる。
-			if (range.Height >= diameter && range.Width >= diameter)
+			if (range.GetIsContainingPoint(position) && range.Height >= diameter && range.Width >= diameter)
 			{
 				belongLayer = layers[currentResolution];
 				belongIndex = nextIndex;
@@ -196,29 +202,34 @@ namespace culling2d
 				break;
 			}
 
-			//次に遷移するレイヤーにおけるグリッドの添字を調べる。
 			if (currentResolution >= layers.size() - 1)
 			{
 				continue;
 			}
 
-			auto position = object->GetCircle().Position;
+			//次に遷移するレイヤーにおけるグリッドの添字を調べる。
 			auto children = Grid::GetChildrenIndices(belongIndex, currentResolution);
 			auto nextLayer = layers[currentResolution + 1];
+			nextIndex = -1;
 			for (auto gridIndex : children)
 			{
 				RectF gridRange = nextLayer->GetGrids()[gridIndex]->GetGridRange();
-				if (gridRange.X <= position.X&&gridRange.Y <= position.Y&&gridRange.X + gridRange.Width >= position.X&&gridRange.Y + gridRange.Height >= position.Y)
+				if (gridRange.GetIsContainingPoint(position))
 				{
 					nextIndex = gridIndex;
 					break;
 				}
 			}
 
+			if (nextIndex == -1)
+			{
+				break;
+			}
+
 		}
 
 		{
-			auto circle = object->GetCircle();
+			auto& circle = object->GetCircle();
 			upperLeft_.X = Min(upperLeft_.X, circle.Position.X);
 			upperLeft_.Y = Min(upperLeft_.Y, circle.Position.Y);
 			lowerRight_.X = Max(lowerRight_.X, circle.Position.X);
@@ -277,7 +288,7 @@ namespace culling2d
 
 	void World::NotifyMoved(Object *object)
 	{
-		if (!object->IsProperPosition())
+		if (!object->IsProperPosition() || !object->GetIsInWorld())
 		{
 			improperObjects.insert(object);
 		}

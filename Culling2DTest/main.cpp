@@ -70,21 +70,15 @@ int main(int argc, char *argv[])
 		for (int i = 0; i < OBJECTNUM; ++i)
 		{
 			auto circle = objects[i]->GetCircle();
-			circle.Position.X += 1;
-			if (circle.Position.X >= 90)
+			circle.Position.X += 40;
+			if (circle.Position.X >= 200)
 			{
-				circle.Position.X = -90;
+				circle.Position.X = -200;
 			}
 			objects[i]->SetCircle(circle);
 		}
 
 		world->Update();
-
-		
-		if (j == TURN / 2)
-		{
-			world->ResetWorld(6, RectF(-150, -150, 300, 300));
-		}
 
 	}
 

@@ -39,10 +39,15 @@ namespace culling2d
 
 	bool RectF::GetCollision(Circle circle)
 	{
-		if (circle.Position.X >= X&&circle.Position.Y >= Y&&circle.Position.X <= X + Width&&circle.Position.Y <= Y + Height)return true;
+		if (GetIsContainingPoint(circle.Position))return true;
 
 		Vector2DF closest = Vector2DF(Clamp(circle.Position.X, X + Width, X), Clamp(circle.Position.Y, Y + Height, Y));
 		float distanceSquared = (closest - circle.Position).GetSquaredLength();
 		return (distanceSquared < (circle.Radius*circle.Radius));
+	}
+
+	bool RectF::GetIsContainingPoint(Vector2DF point)
+	{
+		return X <= point.X&&Y <= point.Y&&X + Width >= point.X&&Y + Height >= point.Y;
 	}
 }
