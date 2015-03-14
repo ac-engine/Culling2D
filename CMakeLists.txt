@@ -20,7 +20,6 @@ endif()
 
 # ソースコード設定
 set(src
-	Culling2D/Common/culling2d.common.cpp
 	Culling2D/Common/Math/culling2d.Vector2DF.cpp
 	Culling2D/Common/Math/culling2d.Vector2DI.cpp
 	Culling2D/Common/Math/culling2d.Vector3DF.cpp
