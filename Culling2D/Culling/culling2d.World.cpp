@@ -2,16 +2,15 @@
 
 namespace culling2d
 {
-	const int CHANGE_OBJECT_NUM = 100;
-	const float MIN_OBJECT_DIAMETER = 10;
-	const float ALLOWANCE = 50;
+	static const int CHANGE_OBJECT_NUM = 100;
+	static const float MIN_OBJECT_DIAMETER = 10;
+	static const float ALLOWANCE = 50;
 
 	void World::initQuadtree()
 	{
 		for (int i = 0; i <= resolution; ++i)
 		{
 			auto layer = new Layer(i);
-			//SafeAddRef(layer);
 			layers.push_back(layer);
 			initQuadtreeGrids(i, worldRange);
 		}
