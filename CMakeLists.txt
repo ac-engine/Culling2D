@@ -22,12 +22,8 @@ endif()
 set(src
 	Culling2D/Common/Math/culling2d.Vector2DF.cpp
 	Culling2D/Common/Math/culling2d.Vector2DI.cpp
-	Culling2D/Common/Math/culling2d.Vector3DF.cpp
-	Culling2D/Common/Math/culling2d.Vector4DF.cpp
 	Culling2D/Common/Math/culling2d.RectF.cpp
 	Culling2D/Common/Math/culling2d.RectI.cpp
-	Culling2D/Common/Math/culling2d.Matrix33.cpp
-	Culling2D/Common/Math/culling2d.Matrix44.cpp
 	Culling2D/Culling/culling2d.World.cpp
 	Culling2D/Culling/culling2d.Layer.cpp
 	Culling2D/Culling/culling2d.Grid.cpp
