@@ -872,6 +872,8 @@ namespace culling2d
 		Grid* AddObject(Object* object);
 		bool RemoveObject(Object* object);
 
+		int GetOutOfRangeObjectsCount() const;
+
 		void ResetNextFirstSortedKey();
 		void IncNextFirstSortedKey();
 		uint32_t GetNextFirstSortedKey() const;

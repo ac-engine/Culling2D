@@ -168,6 +168,11 @@ namespace culling2d
 		}
 	}
 
+	int World::GetOutOfRangeObjectsCount() const
+	{
+		return outOfRangeObjectsCount;
+	}
+
 	RectF World::GetWorldRange() const
 	{
 		return worldRange;
