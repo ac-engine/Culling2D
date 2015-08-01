@@ -2,7 +2,7 @@
 
 namespace culling2d
 {
-	static const int CHANGE_OBJECT_NUM = 100;
+	static const int CHANGE_OBJECT_NUM = 1000;
 	static const float MIN_OBJECT_DIAMETER = 10;
 	static const float ALLOWANCE = 50;
 
@@ -276,6 +276,11 @@ namespace culling2d
 	bool World::RemoveObject(Object* object)
 	{
 		if (mapObjectToGrid.find(object) == mapObjectToGrid.end()) return false;
+
+		if (!object->GetIsInWorld())
+		{
+			outOfRangeObjectsCount--;
+		}
 
 		auto grid = mapObjectToGrid.at(object);
 		mapObjectToGrid.erase(object);
