@@ -76,7 +76,7 @@ namespace culling2d
 		int count = 0;
 		for (auto object : objects)
 		{
-			if (cullingRange.GetCollision(object->GetCircle()))
+			if (cullingRange.GetIsContainingPoint(object->GetCircle().Position))
 			{
 				//SafeAddRef(object);
 				cullingObjects.push_back(object);
