@@ -860,6 +860,8 @@ namespace culling2d
 		Vector2DF upperLeft_;
 		Vector2DF lowerRight_;
 		float minRadius_;
+
+		int initialResolution;
 	public:
 		World(int resolution, RectF worldRange);
 		~World();

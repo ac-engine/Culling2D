@@ -5,7 +5,6 @@ namespace culling2d
 	static const int CHANGE_OBJECT_NUM = 1000;
 	static const float MIN_OBJECT_DIAMETER = 10;
 	static const float ALLOWANCE = 50;
-	static const int RESOLUTION = 5;
 
 
 
@@ -41,6 +40,7 @@ namespace culling2d
 
 	World::World(int resolution, RectF worldRange) :
 		resolution(resolution),
+		initialResolution(resolution),
 		worldRange(worldRange),
 		nextFirstSortedKey(0),
 		nextSecondSortedKey(0),
@@ -132,9 +132,7 @@ namespace culling2d
 			float diam = Max(lowerRight_.X - upperLeft_.X, lowerRight_.Y - upperLeft_.Y) + ALLOWANCE * 2;
 			Vector2DF upper = center - Vector2DF(diam, diam) / 2;
 
-			int res = RESOLUTION;
-
-			ResetWorld(res, RectF(upper.X, upper.Y, diam, diam));
+			ResetWorld(initialResolution, RectF(upper.X, upper.Y, diam, diam));
 		}
 	}
 
