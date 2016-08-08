@@ -5,6 +5,9 @@ namespace culling2d
 	static const int CHANGE_OBJECT_NUM = 1000;
 	static const float MIN_OBJECT_DIAMETER = 10;
 	static const float ALLOWANCE = 50;
+	static const int RESOLUTION = 5;
+
+
 
 	void World::initQuadtree()
 	{
@@ -129,9 +132,7 @@ namespace culling2d
 			float diam = Max(lowerRight_.X - upperLeft_.X, lowerRight_.Y - upperLeft_.Y) + ALLOWANCE * 2;
 			Vector2DF upper = center - Vector2DF(diam, diam) / 2;
 
-			auto obj_diam = Max(minRadius_ * 2, MIN_OBJECT_DIAMETER);
-
-			int res = (int)floor(log2((diam / obj_diam)));
+			int res = RESOLUTION;
 
 			ResetWorld(res, RectF(upper.X, upper.Y, diam, diam));
 		}
