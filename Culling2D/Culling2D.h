@@ -21,13 +21,13 @@
 #include <functional>
 
 #include <memory>
+#include <chrono>
 
 #include <assert.h>
 
 #ifdef _WIN32
 #include <windows.h>
 #else
-#include <unistd.h>
 #endif
 
 namespace culling2d
@@ -36,7 +36,7 @@ namespace culling2d
 	//
 	//----------------------------------------------------------------------------------
 	/**
-	@brief	Å‘å’læ“¾
+	@brief	æœ€å¤§å€¤å–å¾—
 	*/
 	template <typename T, typename U>
 	T Max(T t, U u)
@@ -49,7 +49,7 @@ namespace culling2d
 	}
 
 	/**
-	@brief	Å¬’læ“¾
+	@brief	æœ€å°å€¤å–å¾—
 	*/
 	template <typename T, typename U>
 	T Min(T t, U u)
@@ -62,7 +62,7 @@ namespace culling2d
 	}
 
 	/**
-	@brief	”ÍˆÍ“à’læ“¾
+	@brief	ç¯„å›²å†…å€¤å–å¾—
 	*/
 	template <typename T, typename U, typename V>
 	T Clamp(T t, U max_, V min_)
@@ -111,18 +111,11 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-#ifdef _WIN32
 	inline void Sleep(int32_t ms)
 	{
-		::Sleep(ms);
+		std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 	}
-#else
-	inline void Sleep(int32_t ms)
-	{
-		usleep(1000 * ms);
-	}
-#endif
-
+	
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
@@ -220,7 +213,7 @@ namespace culling2d {
 	//
 	//----------------------------------------------------------------------------------
 	/**
-	@brief	QÆƒJƒEƒ“ƒ^ƒIƒuƒWƒFƒNƒg
+	@brief	å‚ç…§ã‚«ã‚¦ãƒ³ã‚¿ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	*/
 	class ReferenceObject
 	{
@@ -250,7 +243,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 
 	/**
-	@brief	2ŸŒ³ƒxƒNƒgƒ‹
+	@brief	2æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«
 	*/
 	struct Vector2DF
 	{
@@ -266,19 +259,19 @@ namespace culling2d
 		float	Y;
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		Vector2DF();
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		@param	x	X
 		@param	y	Y
 		*/
 		Vector2DF(float x, float y);
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’·‚³‚ğæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		float GetLength() const
 		{
@@ -286,7 +279,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’·‚³‚Ì“ñæ‚ğæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã®äºŒä¹—ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		float GetSquaredLength() const
 		{
@@ -294,7 +287,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’·‚³‚ğİ’è‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’è¨­å®šã™ã‚‹ã€‚
 		*/
 		void SetLength(float value)
 		{
@@ -303,7 +296,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’PˆÊƒxƒNƒgƒ‹‚ğæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		Vector2DF GetNormal()
 		{
@@ -312,7 +305,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’PˆÊƒxƒNƒgƒ‹‰»‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«åŒ–ã™ã‚‹ã€‚
 		*/
 		void Normalize()
 		{
@@ -321,7 +314,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚ÌŒü‚«‚ğŒÊ“x–@‚Åæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å‘ãã‚’å¼§åº¦æ³•ã§å–å¾—ã™ã‚‹ã€‚
 		*/
 		float GetRadian() const
 		{
@@ -329,7 +322,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚ÌŒü‚«‚ğŒÊ“x–@‚Åİ’è‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å‘ãã‚’å¼§åº¦æ³•ã§è¨­å®šã™ã‚‹ã€‚
 		*/
 		void SetRadian(float value)
 		{
@@ -340,7 +333,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚ÌŒü‚«‚ğ“x”–@‚Åæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å‘ãã‚’åº¦æ•°æ³•ã§å–å¾—ã™ã‚‹ã€‚
 		*/
 		float GetDegree() const
 		{
@@ -348,7 +341,7 @@ namespace culling2d
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚ÌŒü‚«‚ğ“x”–@‚Åİ’è‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å‘ãã‚’åº¦æ•°æ³•ã§è¨­å®šã™ã‚‹ã€‚
 		*/
 		void SetDegree(float value)
 		{
@@ -389,9 +382,9 @@ namespace culling2d
 		Vector2DF& operator/=(float right);
 
 		/**
-		@brief	“àÏ‚ğæ“¾‚·‚éB
-		@param	v1	’l1
-		@param	v2	’l2
+		@brief	å†…ç©ã‚’å–å¾—ã™ã‚‹ã€‚
+		@param	v1	å€¤1
+		@param	v2	å€¤2
 		*/
 		static float Dot(const Vector2DF& v1, const Vector2DF& v2)
 		{
@@ -399,9 +392,9 @@ namespace culling2d
 		}
 
 		/**
-		@brief	2“_ŠÔ‚Ì‹——£‚ğæ“¾‚·‚éB
-		@param	v1	’l1
-		@param	v2	’l2
+		@brief	2ç‚¹é–“ã®è·é›¢ã‚’å–å¾—ã™ã‚‹ã€‚
+		@param	v1	å€¤1
+		@param	v2	å€¤2
 		*/
 		static float Distance(const Vector2DF& v1, const Vector2DF& v2)
 		{
@@ -426,7 +419,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 
 	/**
-	@brief	2ŸŒ³ƒxƒNƒgƒ‹(®”)
+	@brief	2æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«(æ•´æ•°)
 	*/
 	struct Vector2DI
 	{
@@ -442,12 +435,12 @@ namespace culling2d
 		int32_t	Y;
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		Vector2DI();
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		Vector2DI(int32_t x, int32_t y);
 
@@ -497,7 +490,7 @@ namespace culling2d {
 	//
 	//----------------------------------------------------------------------------------
 	/**
-	@brief	3ŸŒ³ƒxƒNƒgƒ‹
+	@brief	3æ¬¡å…ƒãƒ™ã‚¯ãƒˆãƒ«
 	*/
 	struct Vector3DF
 	{
@@ -518,12 +511,12 @@ namespace culling2d {
 		float	Z;
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		Vector3DF();
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		@param	x	X
 		@param	y	Y
 		@param	z	Z
@@ -561,7 +554,7 @@ namespace culling2d {
 
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’·‚³‚ğæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		float GetLength() const
 		{
@@ -569,7 +562,7 @@ namespace culling2d {
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’·‚³‚Ì“ñæ‚ğæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã®äºŒä¹—ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		float GetSquaredLength() const
 		{
@@ -577,7 +570,7 @@ namespace culling2d {
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’·‚³‚ğİ’è‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã‚’è¨­å®šã™ã‚‹ã€‚
 		*/
 		void SetLength(float value)
 		{
@@ -586,7 +579,7 @@ namespace culling2d {
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’PˆÊƒxƒNƒgƒ‹‚ğæ“¾‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		Vector3DF GetNormal()
 		{
@@ -595,7 +588,7 @@ namespace culling2d {
 		}
 
 		/**
-		@brief	‚±‚ÌƒxƒNƒgƒ‹‚Ì’PˆÊƒxƒNƒgƒ‹‰»‚·‚éB
+		@brief	ã“ã®ãƒ™ã‚¯ãƒˆãƒ«ã®å˜ä½ãƒ™ã‚¯ãƒˆãƒ«åŒ–ã™ã‚‹ã€‚
 		*/
 		void Normalize()
 		{
@@ -604,20 +597,20 @@ namespace culling2d {
 		}
 
 		/**
-		@brief	“àÏ‚ğæ“¾‚·‚éB
+		@brief	å†…ç©ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		static float Dot(const Vector3DF& v1, const Vector3DF& v2);
 
 		/**
-		@brief	ŠOÏ‚ğæ“¾‚·‚éB
+		@brief	å¤–ç©ã‚’å–å¾—ã™ã‚‹ã€‚
 		@note
-		‰EèŒn‚Ìê‡A‰Eè‚Ìew‚ªv1Al·‚µw‚ªv2‚Æ‚µ‚½‚Æ‚«A’†w‚Ì•ûŒü‚ğ•Ô‚·B<BR>
-		¶èŒn‚Ìê‡A¶è‚Ìew‚ªv1Al·‚µw‚ªv2‚Æ‚µ‚½‚Æ‚«A’†w‚Ì•ûŒü‚ğ•Ô‚·B<BR>
+		å³æ‰‹ç³»ã®å ´åˆã€å³æ‰‹ã®è¦ªæŒ‡ãŒv1ã€äººå·®ã—æŒ‡ãŒv2ã¨ã—ãŸã¨ãã€ä¸­æŒ‡ã®æ–¹å‘ã‚’è¿”ã™ã€‚<BR>
+		å·¦æ‰‹ç³»ã®å ´åˆã€å·¦æ‰‹ã®è¦ªæŒ‡ãŒv1ã€äººå·®ã—æŒ‡ãŒv2ã¨ã—ãŸã¨ãã€ä¸­æŒ‡ã®æ–¹å‘ã‚’è¿”ã™ã€‚<BR>
 		*/
 		static Vector3DF Cross(const Vector3DF& v1, const Vector3DF& v2);
 
 		/**
-		@brief	2“_ŠÔ‚Ì‹——£‚ğæ“¾‚·‚éB
+		@brief	2ç‚¹é–“ã®è·é›¢ã‚’å–å¾—ã™ã‚‹ã€‚
 		*/
 		static float Distance(const Vector3DF& v1, const Vector3DF& v2);
 	};
@@ -669,67 +662,67 @@ namespace culling2d {
 	//
 	//----------------------------------------------------------------------------------
 	/**
-	@brief	’·•ûŒ`(•‚“®¬”“_)‚Ì\‘¢‘Ì
+	@brief	é•·æ–¹å½¢(æµ®å‹•å°æ•°ç‚¹)ã®æ§‹é€ ä½“
 	*/
 	struct RectF
 	{
 	public:
 		/**
-		@brief	¶ãXÀ•W
+		@brief	å·¦ä¸ŠXåº§æ¨™
 		*/
 		float X;
 
 		/**
-		@brief	¶ãYÀ•W
+		@brief	å·¦ä¸ŠYåº§æ¨™
 		*/
 		float Y;
 
 		/**
-		@brief	‰¡•
+		@brief	æ¨ªå¹…
 		*/
 		float Width;
 
 		/**
-		@brief	c•
+		@brief	ç¸¦å¹…
 		*/
 		float Height;
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		RectF();
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		@param	x	¶ãXÀ•W
-		@param	y	¶ãYÀ•W
-		@param	width	‰¡•
-		@param	height	c•
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@param	x	å·¦ä¸ŠXåº§æ¨™
+		@param	y	å·¦ä¸ŠYåº§æ¨™
+		@param	width	æ¨ªå¹…
+		@param	height	ç¸¦å¹…
 		*/
 		RectF(float x, float y, float width, float height);
 
 		/**
-		@brief	¶ãÀ•W‚ğæ“¾‚·‚éB
-		@return	¶ãÀ•W
+		@brief	å·¦ä¸Šåº§æ¨™ã‚’å–å¾—ã™ã‚‹ã€‚
+		@return	å·¦ä¸Šåº§æ¨™
 		*/
 		Vector2DF GetPosition() const;
 
 		/**
-		@brief	‘å‚«‚³‚ğæ“¾‚·‚éB
-		@return	‘å‚«‚³
+		@brief	å¤§ãã•ã‚’å–å¾—ã™ã‚‹ã€‚
+		@return	å¤§ãã•
 		*/
 		Vector2DF GetSize() const;
 
 		/**
-		@brief	l‹÷‚ÌÀ•W‚ğ(X,Y)A(X+Width,Y)A(X+Width,Y+Height)A(X,Y+Height)‚Ì‡‚É”z—ñ‚Æ‚µ‚Äæ“¾‚·‚éB
-		@return	À•W
+		@brief	å››éš…ã®åº§æ¨™ã‚’(X,Y)ã€(X+Width,Y)ã€(X+Width,Y+Height)ã€(X,Y+Height)ã®é †ã«é…åˆ—ã¨ã—ã¦å–å¾—ã™ã‚‹ã€‚
+		@return	åº§æ¨™
 		*/
 		std::array<Vector2DF, 4> GetVertexes() const;
 
 		/**
-		@brief	‰~‚ÆÕ“Ë‚µ‚Ä‚¢‚é‚©”Û‚©‚ğ’²‚×‚éB
-		@param circle ‰~
-		@return	Õ“Ë‚µ‚Ä‚¢‚é‚©”Û‚©
+		@brief	å††ã¨è¡çªã—ã¦ã„ã‚‹ã‹å¦ã‹ã‚’èª¿ã¹ã‚‹ã€‚
+		@param circle å††
+		@return	è¡çªã—ã¦ã„ã‚‹ã‹å¦ã‹
 		*/
 		bool GetCollision(Circle circle);
 
@@ -746,60 +739,60 @@ namespace culling2d {
 namespace culling2d
 {
 	/**
-	@brief	’·•ûŒ`(®”)‚Ì\‘¢‘Ì
+	@brief	é•·æ–¹å½¢(æ•´æ•°)ã®æ§‹é€ ä½“
 	*/
 	struct RectI
 	{
 	public:
 		/**
-		@brief	¶ãXÀ•W
+		@brief	å·¦ä¸ŠXåº§æ¨™
 		*/
 		int X;
 
 		/**
-		@brief	¶ãYÀ•W
+		@brief	å·¦ä¸ŠYåº§æ¨™
 		*/
 		int Y;
 
 		/**
-		@brief	‰¡•
+		@brief	æ¨ªå¹…
 		*/
 		int Width;
 
 		/**
-		@brief	c•
+		@brief	ç¸¦å¹…
 		*/
 		int Height;
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		*/
 		RectI();
 
 		/**
-		@brief	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		@param	x	¶ãXÀ•W
-		@param	y	¶ãYÀ•W
-		@param	width	‰¡•
-		@param	height	c•
+		@brief	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		@param	x	å·¦ä¸ŠXåº§æ¨™
+		@param	y	å·¦ä¸ŠYåº§æ¨™
+		@param	width	æ¨ªå¹…
+		@param	height	ç¸¦å¹…
 		*/
 		RectI(int x, int y, int width, int height);
 
 		/**
-		@brief	¶ãÀ•W‚ğæ“¾‚·‚éB
-		@return	¶ãÀ•W
+		@brief	å·¦ä¸Šåº§æ¨™ã‚’å–å¾—ã™ã‚‹ã€‚
+		@return	å·¦ä¸Šåº§æ¨™
 		*/
 		Vector2DI GetPosition() const;
 
 		/**
-		@brief	‘å‚«‚³‚ğæ“¾‚·‚éB
-		@return	‘å‚«‚³
+		@brief	å¤§ãã•ã‚’å–å¾—ã™ã‚‹ã€‚
+		@return	å¤§ãã•
 		*/
 		Vector2DI GetSize() const;
 
 		/**
-		@brief	l‹÷‚ÌÀ•W‚ğ(X,Y)A(X+Width,Y)A(X+Width,Y+Height)A(X,Y+Height)‚Ì‡‚É”z—ñ‚Æ‚µ‚Äæ“¾‚·‚éB
-		@return	À•W
+		@brief	å››éš…ã®åº§æ¨™ã‚’(X,Y)ã€(X+Width,Y)ã€(X+Width,Y+Height)ã€(X,Y+Height)ã®é †ã«é…åˆ—ã¨ã—ã¦å–å¾—ã™ã‚‹ã€‚
+		@return	åº§æ¨™
 		*/
 		std::array<Vector2DI, 4> GetVertexes() const;
 
