@@ -12,8 +12,8 @@
 
 #include <vector>
 #include <string>
-#include <set>
-#include <map>
+#include <unordered_set>
+#include <unordered_map>
 #include <list>
 #include <array>
 #include <algorithm>
@@ -840,8 +840,8 @@ namespace culling2d
 		uint32_t nextSecondSortedKey;
 		std::vector<Layer*> layers;
 		std::vector<Object*> tempObjects;
-		std::set<Object*> improperObjects;
-		std::map<Object*, Grid*> mapObjectToGrid;
+		std::unordered_set<Object*> improperObjects;
+		std::unordered_map<Object*, Grid*> mapObjectToGrid;
 
 		void initQuadtreeGrids(int layerResolution, RectF range);
 		void initQuadtree();
@@ -932,7 +932,7 @@ namespace culling2d
 		int resolutionLevel;
 		RectF gridRange;
 		int index;
-		std::set<Object*> objects;
+		std::unordered_set<Object*> objects;
 		static std::array<int, 4> childrenIndices;
 	public:
 		Grid(int resolutionLevel, RectF gridRange);
