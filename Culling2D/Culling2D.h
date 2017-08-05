@@ -30,7 +30,7 @@
 #else
 #endif
 
-#include "../culling2d_common/src/Culling2DCommon.h"
+#include <Culling2DCommon.h>
 
 #include <memory>
 #include <atomic>

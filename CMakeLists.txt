@@ -56,7 +56,9 @@ list(APPEND test_src
 
 
 include_directories(
-	./
+	./culling2d_common/src
+	./Culling2D/src
+	./Culling2D_AABB/src
 )
 
 link_directories(${PROJECT_SOURCE_DIR}/bin/)
