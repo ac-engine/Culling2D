@@ -94,6 +94,8 @@ endif()
 
 # �o�͐�̐ݒ�
 if (MSVC)
+set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_Common_debug" )
+set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_RELEASE "Culling2D_Common" )
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_debug" )
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME_RELEASE "Culling2D" )
 set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_AABB_debug" )
@@ -101,6 +103,7 @@ set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_RELEASE "Culling_AAB
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME_DEBUG "Culling2DTest_debug" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME_RELEASE "Culling2DTest" )
 else()
+set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_Common" )
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME "Culling2D" )
 set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME "Culling2D_AABB" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME "Culling2DTest" )
