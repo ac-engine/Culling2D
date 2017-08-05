@@ -56,7 +56,11 @@ list(APPEND test_src
 
 
 include_directories(
+<<<<<<< HEAD
 	./culling2d_common
+=======
+	./culling2d_common/src
+>>>>>>> 4148386a605c203b9e7189101c0d250eabf98781
 	./Culling2D
 	./Culling2D_AABB
 )
