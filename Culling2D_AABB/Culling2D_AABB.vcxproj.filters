@@ -43,6 +43,7 @@
     <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.World.cpp">
       <Filter>Culling</Filter>
     </ClCompile>
+    <ClCompile Include="src\culling2d_aabb.ReferenceObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\common\math\culling2d_aabb.RectI.cpp">

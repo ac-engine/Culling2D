@@ -142,6 +142,7 @@
     <ClCompile Include="src\common\math\culling2d_aabb.RectF.cpp" />
     <ClCompile Include="src\common\math\culling2d_aabb.Vector2DF.cpp" />
     <ClCompile Include="src\common\math\culling2d_aabb.Vector2DI.cpp" />
+    <ClCompile Include="src\culling2d_aabb.ReferenceObject.cpp" />
     <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.Grid.cpp" />
     <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.Layer.cpp" />
     <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.Object.cpp" />

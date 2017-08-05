@@ -1,24 +1,24 @@
-# Debug Release‚ÉŒÀ’è
+# Debug Releaseï¿½ÉŒï¿½ï¿½ï¿½
 set(CMAKE_CONFIGURATION_TYPES Debug Release CACHE TYPE INTERNAL FORCE )
 
-# ƒvƒƒWƒFƒNƒg–¼
+# ï¿½vï¿½ï¿½ï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½
 project(Culling2D)
 
-# CMake ƒo[ƒWƒ‡ƒ“ƒ`ƒFƒbƒN
+# CMake ï¿½oï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
 if (MSVC)
 cmake_minimum_required(VERSION 2.8.11)
 else()
 cmake_minimum_required(VERSION 2.8)
 endif()
 
-# ƒRƒ“ƒpƒCƒ‹İ’è
+# ï¿½Rï¿½ï¿½ï¿½pï¿½Cï¿½ï¿½ï¿½İ’ï¿½
 if (MSVC)
-	# “Á‚É‰½‚à
+	# ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½
 else()
 	set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC" ${CMAKE_CXX_FLAGS})
 endif()
 
-# ƒ\[ƒXƒR[ƒhİ’è
+# ï¿½\ï¿½[ï¿½Xï¿½Rï¿½[ï¿½hï¿½İ’ï¿½
 set(src
 	Culling2D/Common/Math/culling2d.Vector2DF.cpp
 	Culling2D/Common/Math/culling2d.Vector2DI.cpp
@@ -31,13 +31,28 @@ set(src
 	Culling2D/culling2d.ReferenceObject.cpp
 )
 
+set(src_aabb
+	Culling2D_AABB/src/Common/Math/culling2d_aabb.Vector2DF.cpp
+	Culling2D_AABB/src/Common/Math/culling2d_aabb.Vector2DI.cpp
+	Culling2D_AABB/src/Common/Math/culling2d_aabb.RectF.cpp
+	Culling2D_AABB/src/Common/Math/culling2d_aabb.RectI.cpp
+	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.World.cpp
+	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.Layer.cpp
+	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.Grid.cpp
+	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.Object.cpp
+	Culling2D_AABB/src/culling2d_aabb.ReferenceObject.cpp
+)
+
 set(test_src
 	Culling2DTest/main.cpp)
 
 list(APPEND test_src
 	${src})
 
-# ƒCƒ“ƒNƒ‹[ƒh‚Ìİ’è
+list(APPEND test_src
+	${src_aabb})
+
+# ï¿½Cï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½[ï¿½hï¿½Ìİ’ï¿½
 include_directories(
 	./
 )
@@ -45,11 +60,12 @@ include_directories(
 link_directories(${PROJECT_SOURCE_DIR}/bin/)
 link_directories(${PROJECT_BINARY_DIR}/bin/)
 
-# ƒRƒ“ƒpƒCƒ‹æ‚ğ’Ç‰Á
+# ï¿½Rï¿½ï¿½ï¿½pï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½
 add_executable( culling2dtest ${test_src} )
 add_library( culling2d STATIC ${src} )
+add_library( culling2d_aabb STATIC ${src_aabb} )
 
-# ƒtƒ‰ƒOˆ—
+# ï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½
 if (MSVC)
 	if (NOT USE_MSVC_RUNTIME_LIBRARY_DLL)
 		foreach (flag CMAKE_C_FLAGS
@@ -69,14 +85,17 @@ if (MSVC)
 	endif()
 endif()
 
-# o—Íæ‚Ìİ’è
+# ï¿½oï¿½Íï¿½Ìİ’ï¿½
 if (MSVC)
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_debug" )
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME_RELEASE "Culling2D" )
+set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_AABB_debug" )
+set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_RELEASE "Culling_AABB_2D" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME_DEBUG "Culling2DTest_debug" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME_RELEASE "Culling2DTest" )
 else()
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME "Culling2D" )
+set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME "Culling2D_AABB" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME "Culling2DTest" )
 
 set_target_properties(culling2d PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "bin/" )
@@ -85,6 +104,11 @@ endif()
 
 install(
 	TARGETS culling2d
+	ARCHIVE DESTINATION lib
+	LIBRARY DESTINATION lib)
+
+install(
+	TARGETS culling2d_aabb
 	ARCHIVE DESTINATION lib
 	LIBRARY DESTINATION lib)
 
