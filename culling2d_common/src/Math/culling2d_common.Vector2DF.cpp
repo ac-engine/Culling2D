@@ -1,4 +1,7 @@
-﻿#include "../../Culling2D.h"
+//----------------------------------------------------------------------------------
+//
+//----------------------------------------------------------------------------------
+#include "../Culling2DCommon.h"
 
 //----------------------------------------------------------------------------------
 //
@@ -8,9 +11,9 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI::Vector2DI()
-		: X(0)
-		, Y(0)
+	Vector2DF::Vector2DF()
+		: X(0.0f)
+		, Y(0.0f)
 	{
 
 	}
@@ -18,7 +21,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI::Vector2DI(int32_t x, int32_t y)
+	Vector2DF::Vector2DF(float x, float y)
 		: X(x)
 		, Y(y)
 	{
@@ -28,7 +31,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	bool Vector2DI::operator==(const Vector2DI& right)
+	bool Vector2DF::operator==(const Vector2DF& right)
 	{
 		return X == right.X && Y == right.Y;
 	}
@@ -36,7 +39,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	bool Vector2DI::operator!=(const Vector2DI& right)
+	bool Vector2DF::operator!=(const Vector2DF& right)
 	{
 		return X != right.X || Y != right.Y;
 	}
@@ -44,63 +47,63 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator-()
+	Vector2DF Vector2DF::operator-()
 	{
-		return Vector2DI(-X, -Y);
+		return Vector2DF(-X, -Y);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator+(const Vector2DI& right)
+	Vector2DF Vector2DF::operator+(const Vector2DF& right)
 	{
-		return Vector2DI(X + right.X, Y + right.Y);
+		return Vector2DF(X + right.X, Y + right.Y);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator-(const Vector2DI& right)
+	Vector2DF Vector2DF::operator-(const Vector2DF& right)
 	{
-		return Vector2DI(X - right.X, Y - right.Y);
+		return Vector2DF(X - right.X, Y - right.Y);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator*(const Vector2DI& right)
+	Vector2DF Vector2DF::operator*(const Vector2DF& right)
 	{
-		return Vector2DI(X * right.X, Y * right.Y);
+		return Vector2DF(X * right.X, Y * right.Y);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator/(const Vector2DI& right)
+	Vector2DF Vector2DF::operator/(const Vector2DF& right)
 	{
-		return Vector2DI(X / right.X, Y / right.Y);
+		return Vector2DF(X / right.X, Y / right.Y);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator*(int32_t right)
+	Vector2DF Vector2DF::operator*(float right)
 	{
-		return Vector2DI(X * right, Y * right);
+		return Vector2DF(X * right, Y * right);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI Vector2DI::operator/(int32_t right)
+	Vector2DF Vector2DF::operator/(float right)
 	{
-		return Vector2DI(X / right, Y / right);
+		return Vector2DF(X / right, Y / right);
 	}
 
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI& Vector2DI::operator+=(const Vector2DI& right)
+	Vector2DF& Vector2DF::operator+=(const Vector2DF& right)
 	{
 		X += right.X;
 		Y += right.Y;
@@ -110,7 +113,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI& Vector2DI::operator-=(const Vector2DI& right)
+	Vector2DF& Vector2DF::operator-=(const Vector2DF& right)
 	{
 		X -= right.X;
 		Y -= right.Y;
@@ -120,7 +123,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI& Vector2DI::operator*=(const Vector2DI& right)
+	Vector2DF& Vector2DF::operator*=(const Vector2DF& right)
 	{
 		X *= right.X;
 		Y *= right.Y;
@@ -130,7 +133,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI& Vector2DI::operator/=(const Vector2DI& right)
+	Vector2DF& Vector2DF::operator/=(const Vector2DF& right)
 	{
 		X /= right.X;
 		Y /= right.Y;
@@ -140,7 +143,7 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI& Vector2DI::operator*=(int32_t right)
+	Vector2DF& Vector2DF::operator*=(float right)
 	{
 		X *= right;
 		Y *= right;
@@ -150,12 +153,14 @@ namespace culling2d
 	//----------------------------------------------------------------------------------
 	//
 	//----------------------------------------------------------------------------------
-	Vector2DI& Vector2DI::operator/=(int32_t right)
+	Vector2DF& Vector2DF::operator/=(float right)
 	{
 		X /= right;
 		Y /= right;
 		return *this;
 	}
+
+
 
 	//----------------------------------------------------------------------------------
 	//

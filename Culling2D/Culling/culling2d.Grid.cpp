@@ -1,4 +1,5 @@
 #include "../Culling2D.h"
+#include "../../culling2d_common/src/Culling2DCommon.h"
 
 namespace culling2d
 {

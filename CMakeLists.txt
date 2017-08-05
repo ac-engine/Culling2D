@@ -18,30 +18,34 @@ else()
 	set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC" ${CMAKE_CXX_FLAGS})
 endif()
 
+set(src_common
+	culling2d_common/src/Math/culling2d_common.Vector2DF.cpp
+	culling2d_common/src/Math/culling2d_common.Vector2DI.cpp
+	culling2d_common/src/Math/culling2d_common.RectF.cpp
+	culling2d_common/src/Math/culling2d_common.RectI.cpp
+	culling2d_common/src/culling2d_common.ReferenceObject.cpp
+)
+
 # �\�[�X�R�[�h�ݒ�
 set(src
-	Culling2D/Common/Math/culling2d.Vector2DF.cpp
-	Culling2D/Common/Math/culling2d.Vector2DI.cpp
-	Culling2D/Common/Math/culling2d.RectF.cpp
-	Culling2D/Common/Math/culling2d.RectI.cpp
 	Culling2D/Culling/culling2d.World.cpp
 	Culling2D/Culling/culling2d.Layer.cpp
 	Culling2D/Culling/culling2d.Grid.cpp
 	Culling2D/Culling/culling2d.Object.cpp
-	Culling2D/culling2d.ReferenceObject.cpp
 )
 
 set(src_aabb
-	Culling2D_AABB/src/Common/Math/culling2d_aabb.Vector2DF.cpp
-	Culling2D_AABB/src/Common/Math/culling2d_aabb.Vector2DI.cpp
-	Culling2D_AABB/src/Common/Math/culling2d_aabb.RectF.cpp
-	Culling2D_AABB/src/Common/Math/culling2d_aabb.RectI.cpp
 	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.World.cpp
 	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.Layer.cpp
 	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.Grid.cpp
 	Culling2D_AABB/src/Culling2D_AABB/culling2d_aabb.Object.cpp
-	Culling2D_AABB/src/culling2d_aabb.ReferenceObject.cpp
 )
+
+list(APPEND src
+	${src_common})
+
+list(APPEND src_aabb
+	${src_common})
 
 set(test_src
 	Culling2DTest/main.cpp)
@@ -49,8 +53,10 @@ set(test_src
 list(APPEND test_src
 	${src})
 
+
 list(APPEND test_src
 	${src_aabb})
+	
 
 # �C���N���[�h�̐ݒ�
 include_directories(
@@ -62,6 +68,7 @@ link_directories(${PROJECT_BINARY_DIR}/bin/)
 
 # �R���p�C�����ǉ�
 add_executable( culling2dtest ${test_src} )
+add_library( culling2d_common STATIC ${src_common} )
 add_library( culling2d STATIC ${src} )
 add_library( culling2d_aabb STATIC ${src_aabb} )
 

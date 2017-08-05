@@ -1,5 +1,5 @@
-﻿
-#include "../../Culling2D.h"
+
+#include "../Culling2DCommon.h"
 
 using namespace std;
 
@@ -37,9 +37,24 @@ namespace culling2d
 		return result;
 	}
 
+	bool RectF::GetCollision(RectF rectf)
+	{
+		return std::abs(rectf.X - X) < rectf.Width / 2 + Width / 2 &&
+			std::abs(rectf.Y - Y) < rectf.Height / 2 + Height / 2;
+	}
+
+	bool RectF::operator==(RectF rectF) const {
+		return X == rectF.X && Y == rectF.Y && Width == rectF.Width && Height == rectF.Height;
+	}
+	bool RectF::operator!=(RectF rectF) const {
+		return X != rectF.X || Y != rectF.Y || Width != rectF.Width || Height != rectF.Height;
+	}
+
+
 	bool RectF::GetCollision(Circle circle)
 	{
-		if (GetIsContainingPoint(circle.Position))return true;
+		if (GetIsContainingPoint(circle.Position))
+			return true;
 
 		Vector2DF closest = Vector2DF(Clamp(circle.Position.X, X + Width, X), Clamp(circle.Position.Y, Y + Height, Y));
 		float distanceSquared = (closest - circle.Position).GetSquaredLength();
