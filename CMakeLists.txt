@@ -1,19 +1,15 @@
-# Debug Release�Ɍ���
 set(CMAKE_CONFIGURATION_TYPES Debug Release CACHE TYPE INTERNAL FORCE )
 
-# �v���W�F�N�g��
 project(Culling2D)
 
-# CMake �o�[�W�����`�F�b�N
 if (MSVC)
 cmake_minimum_required(VERSION 2.8.11)
 else()
 cmake_minimum_required(VERSION 2.8)
 endif()
 
-# �R���p�C���ݒ�
 if (MSVC)
-	# ���ɉ���
+
 else()
 	set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC" ${CMAKE_CXX_FLAGS})
 endif()
@@ -26,7 +22,7 @@ set(src_common
 	culling2d_common/src/culling2d_common.ReferenceObject.cpp
 )
 
-# �\�[�X�R�[�h�ݒ�
+
 set(src
 	Culling2D/Culling/culling2d.World.cpp
 	Culling2D/Culling/culling2d.Layer.cpp
@@ -58,7 +54,7 @@ list(APPEND test_src
 	${src_aabb})
 	
 
-# �C���N���[�h�̐ݒ�
+
 include_directories(
 	./
 )
@@ -66,13 +62,13 @@ include_directories(
 link_directories(${PROJECT_SOURCE_DIR}/bin/)
 link_directories(${PROJECT_BINARY_DIR}/bin/)
 
-# �R���p�C�����ǉ�
+
 add_executable( culling2dtest ${test_src} )
 add_library( culling2d_common STATIC ${src_common} )
 add_library( culling2d STATIC ${src} )
 add_library( culling2d_aabb STATIC ${src_aabb} )
 
-# �t���O����
+
 if (MSVC)
 	if (NOT USE_MSVC_RUNTIME_LIBRARY_DLL)
 		foreach (flag CMAKE_C_FLAGS
@@ -92,7 +88,7 @@ if (MSVC)
 	endif()
 endif()
 
-# �o�͐�̐ݒ�
+
 if (MSVC)
 set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_Common_debug" )
 set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_RELEASE "Culling2D_Common" )
