@@ -56,9 +56,9 @@ list(APPEND test_src
 
 
 include_directories(
-	./culling2d_common/src
-	./Culling2D/src
-	./Culling2D_AABB/src
+	./culling2d_common
+	./Culling2D
+	./Culling2D_AABB
 )
 
 link_directories(${PROJECT_SOURCE_DIR}/bin/)
@@ -97,7 +97,7 @@ set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_RELEASE "Culling2D
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_debug" )
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME_RELEASE "Culling2D" )
 set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_AABB_debug" )
-set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_RELEASE "Culling_AABB_2D" )
+set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME_RELEASE "Culling2D_AABB" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME_DEBUG "Culling2DTest_debug" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME_RELEASE "Culling2DTest" )
 else()
