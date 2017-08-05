@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{d4be7672-9703-4ef1-8dbd-ef6817c1be7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Math">
+      <UniqueIdentifier>{2935b201-86c1-4704-adb0-0b58483ab6c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Culling">
+      <UniqueIdentifier>{83f8eab8-bdbd-4a2f-a85b-f9d91006e07c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Culling2D_AABB.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\common\math\culling2d_aabb.RectF.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\math\culling2d_aabb.Vector2DF.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\math\culling2d_aabb.Vector2DI.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.Grid.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.Layer.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.Object.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Culling2D_AABB\culling2d_aabb.World.cpp">
+      <Filter>Culling</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\common\math\culling2d_aabb.RectI.cpp">
+      <Filter>Common\Math</Filter>
+    </None>
+  </ItemGroup>
+</Project>
