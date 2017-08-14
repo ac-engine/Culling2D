@@ -2,7 +2,7 @@
 
 namespace culling2d
 {
-	static const int CHANGE_OBJECT_NUM = 1000;
+	static const uint32_t CHANGE_OBJECT_NUM = 1000;
 	static const float MIN_OBJECT_DIAMETER = 10;
 	static const float ALLOWANCE = 50;
 
@@ -167,7 +167,7 @@ namespace culling2d
 		}
 	}
 
-	int World::GetOutOfRangeObjectsCount() const
+	uint32_t World::GetOutOfRangeObjectsCount() const
 	{
 		return outOfRangeObjectsCount;
 	}

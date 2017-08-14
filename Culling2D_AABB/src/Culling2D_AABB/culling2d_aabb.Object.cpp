@@ -59,7 +59,6 @@ namespace culling2d_aabb
 	void Object::SetCurrentRange(RectF range)
 	{
 		this->currentRange = range;
-		isInWorld = range.GetCollision(aabb);
 	}
 
 	bool Object::IsProperPosition() const
