@@ -9,7 +9,7 @@ cmake_minimum_required(VERSION 2.8)
 endif()
 
 if (MSVC)
-
+	option(USE_MSVC_RUNTIME_LIBRARY_DLL "Use MSVC runtime library DLL" OFF)
 else()
 	set(CMAKE_CXX_FLAGS "-std=c++11 -fPIC" ${CMAKE_CXX_FLAGS})
 endif()
