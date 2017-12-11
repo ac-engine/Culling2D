@@ -105,9 +105,6 @@ set_target_properties(culling2d_common PROPERTIES OUTPUT_NAME_DEBUG "Culling2D_C
 set_target_properties(culling2d PROPERTIES OUTPUT_NAME "Culling2D" )
 set_target_properties(culling2d_aabb PROPERTIES OUTPUT_NAME "Culling2D_AABB" )
 set_target_properties(culling2dtest PROPERTIES OUTPUT_NAME "Culling2DTest" )
-
-set_target_properties(culling2d PROPERTIES ARCHIVE_OUTPUT_DIRECTORY "bin/" )
-set_target_properties(culling2d PROPERTIES LIBRARY_OUTPUT_DIRECTORY "bin/" )
 endif()
 
 install(
