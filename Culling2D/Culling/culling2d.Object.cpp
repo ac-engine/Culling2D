@@ -60,7 +60,6 @@ namespace culling2d
 	void Object::SetCurrentRange(RectF range)
 	{
 		this->currentRange = range;
-		isInWorld = range.GetIsContainingPoint(circle.Position);
 	}
 
 	bool Object::IsProperPosition() const
